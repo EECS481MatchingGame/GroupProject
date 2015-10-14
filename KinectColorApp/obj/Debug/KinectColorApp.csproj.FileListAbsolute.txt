@@ -50,3 +50,15 @@ C:\Users\Evan\Code\KinectColorApp\KinectColorApp\bin\Debug\KinectColorApp.exe.ma
 C:\Users\Evan\Code\KinectColorApp\KinectColorApp\bin\Debug\KinectColorApp.application
 C:\Users\Evan\Code\KinectColorApp\KinectColorApp\obj\Debug\KinectColorApp.exe.manifest
 C:\Users\Evan\Code\KinectColorApp\KinectColorApp\obj\Debug\KinectColorApp.application
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\KinectColorApp.exe.config
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.exe
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.pdb
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.csprojResolveAssemblyReference.cache
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\MainWindow.baml
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\MainWindow.g.cs
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\App.g.cs
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp_Content.g.cs
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp_MarkupCompile.cache
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.g.resources
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.Properties.Resources.resources
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.csproj.GenerateResource.Cache
