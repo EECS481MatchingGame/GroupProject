@@ -16,12 +16,14 @@ namespace KinectColorApp
 {
     class CardController
     {
-        // variables contained in card - we can add more!  Such as an image file, center coordinate, bool showOnBoard, etc
+        // variables contained in card - we can add more!  Such as an image file, bool showOnBoard, etc
         public bool isPressed;
         public int topYcoordinate;
         public int bottomYcoordinate;
         public int leftXcoordinate;
         public int rightXcoordinate;
+        public int centerXcoordinate;
+        public int centerYcoordinate;
 
         // constructor that takes all arguments
         public CardController(bool isPrssd, int topY, int botY, int leftX, int rightX)
@@ -31,7 +33,10 @@ namespace KinectColorApp
             bottomYcoordinate = botY;
             leftXcoordinate = leftX;
             rightXcoordinate = rightX;
+            centerXcoordinate = (leftXcoordinate + rightXcoordinate) / 2;
+            centerYcoordinate = (topYcoordinate + bottomYcoordinate) / 2;
         }
+
 
         // create methods for each value
         public void setPressed(bool press) { isPressed = press; }
@@ -75,6 +80,7 @@ namespace KinectColorApp
             cards[19] = new CardController(false, 0, 1, 2, 3);  // card 19 is the bottom right card
             return cards;   // is this necessary?  does C# pass by reference?
         }
+        
 
         // later on, make this pass by reference
         // This function is only called if the depth is sufficient enough to constitute a press
