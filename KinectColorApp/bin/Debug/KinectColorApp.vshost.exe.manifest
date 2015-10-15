@@ -42,31 +42,38 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
-      <assemblyIdentity name="Microsoft.Kinect" version="1.8.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
-    </dependentAssembly>
-  </dependency>
-  <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinectColorApp.exe" size="10357760">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinectColorApp.exe" size="10358688">
       <assemblyIdentity name="KinectColorApp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vfg1G9gokOb8fhh4gWWQP2UZ9Z/dEeY3/xHLWQLBjtM=</dsig:DigestValue>
+        <dsig:DigestValue>s9ytfKpKti4uSnlYXMiCt67+UbLlLC9L58A9VB9W8B4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Samples.Kinect.WpfViewers.dll" size="71168">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Kinect.dll" size="173056">
+      <assemblyIdentity name="Microsoft.Kinect" version="1.8.0.0" publicKeyToken="31BF3856AD364E35" language="neutral" processorArchitecture="msil" />
+      <hash>
+        <dsig:Transforms>
+          <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+        </dsig:Transforms>
+        <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+        <dsig:DigestValue>sTNbBT9HDF9w++RQJyE4uAbSULGYqyETizV0n1EB2dg=</dsig:DigestValue>
+      </hash>
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Microsoft.Samples.Kinect.WpfViewers.dll" size="69632">
       <assemblyIdentity name="Microsoft.Samples.Kinect.WpfViewers" version="0.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OhgIoI1auJaxgLVGOCnl0MONgNFCYbyEizFFBXlOAJU=</dsig:DigestValue>
+        <dsig:DigestValue>GTRM+WoWaT9dEJGlBBUD7UBPODD2z8jdLT5PTMjykIw=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

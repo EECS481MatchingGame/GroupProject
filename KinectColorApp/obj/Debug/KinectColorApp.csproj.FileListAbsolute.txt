@@ -62,3 +62,15 @@ C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\Kinec
 C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.g.resources
 C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.Properties.Resources.resources
 C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.csproj.GenerateResource.Cache
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\KinectColorApp.exe.manifest
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\KinectColorApp.application
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\KinectColorApp.exe
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\KinectColorApp.pdb
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\Microsoft.Kinect.dll
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.dll
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\zxing.dll
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\zxing.kinect.dll
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\Microsoft.Samples.Kinect.WpfViewers.pdb
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\bin\Debug\Microsoft.Kinect.xml
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.exe.manifest
+C:\Users\Christian\Documents\EECS481\GroupProject\KinectColorApp\obj\Debug\KinectColorApp.application
