@@ -130,8 +130,13 @@ namespace KinectColorApp
 
         
 
-        int find_touch(ColorImageFrame colorFrame, DepthImageFrame depthFrame)
+       int find_touch(ColorImageFrame colorFrame, DepthImageFrame depthFrame)
         {
+            // temporarily defining the set of cards 
+            CardController list = new CardController(true, 0, 1, 0, 1); 
+            List<CardController> cards = new List<CardController>();
+            list.initializeCards(cards);
+
             int minDepthIndex = 0;
             int maxDepthIndex = 479 * depthFrame.Width;
             short[] rawDepthData = new short[depthFrame.PixelDataLength];
@@ -150,16 +155,31 @@ namespace KinectColorApp
                     // Get the point in the depth frame at the center of the barcode
                     double x_kinect = (depthIndex % depthFrame.Width);
                     double y_kinect = (depthIndex / depthFrame.Width);
-                    Point p = new Point(x_kinect, y_kinect);
-                    code_points[next_code_num] = p;
 
-                    Console.WriteLine("Found code " + next_code_num + " at (" + x_kinect + ", " + y_kinect + ").");
-                    return next_code_num;
+                    for (int i = 0; i < cards.Count; i++)
+                    { // check if point is within a card's boundry 
+                      // if (cards[i].isShown == true) // check to make sure card is on board
+                        if (x_kinect > cards[i].leftXcoordinate && x_kinect < cards[i].rightXcoordinate)
+                        { // if point's X coord is between cards right and left X coord 
+                            if (y_kinect > cards[i].topYcoordinate && y_kinect < cards[i].bottomYcoordinate)
+                            { // if point's Y coord is between cards top and bottom Y coord 
+                                // point of touch is within a card boundry 
+                                Point p = new Point(x_kinect, y_kinect);
+                                code_points[next_code_num] = p;
+
+                                Console.WriteLine("Found code " + next_code_num + " at (" + x_kinect + ", " + y_kinect + ").");
+                                Console.WriteLine("Card touched is: " + i);
+                                return next_code_num;
+                            }
+                        }
+
+                    }
                 }
             }
 
             return -1;
         }
+
 
         int find_code(ColorImageFrame colorFrame, DepthImageFrame depthFrame)
         {
