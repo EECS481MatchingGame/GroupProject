@@ -39,12 +39,14 @@ namespace KinectColorApp
             buttons = new Ellipse[] { red_selector, blue_selector, green_selector, eraser_selector, background_selector, refresh_selector };
             drawController = new DrawController(drawingCanvas, backgroundImage, colorRect, image1, buttons);
             soundController = new SoundController();
-            kinectController = new KinectController(drawController, image1, soundController, buttons);
+            cardController = new CardController();
+            kinectController = new KinectController(drawController, image1, soundController, buttons, cardController);
         }
 
         private CalibrationController calController;
         private DrawController drawController;
         private SoundController soundController;
+        private CardController cardController;
         private KinectController kinectController;
         private KinectSensor sensor;
         bool has_started_calibrating = false;

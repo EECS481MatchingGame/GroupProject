@@ -14,6 +14,7 @@ using System.Windows;
 
 namespace KinectColorApp
 {
+    // internal class?
     class CardController
     {
         // variables contained in card - we can add more!  Such as an image file, bool showOnBoard, etc
@@ -24,8 +25,22 @@ namespace KinectColorApp
         public int rightXcoordinate;
         public int centerXcoordinate;
         public int centerYcoordinate;
+        private static int xResolution = 640;
+        private static int yResolution = 480;
 
-        // constructor that takes all arguments
+        // constructor that takes no arguments
+        public CardController()
+        {
+            isPressed = false;
+            topYcoordinate = 0;
+            bottomYcoordinate = 0;
+            leftXcoordinate = 0;
+            rightXcoordinate = 0;
+            centerXcoordinate = 0;
+            centerYcoordinate = 0;
+        }
+
+        // constructor that takes (more) arguments
         public CardController(bool isPrssd, int topY, int botY, int leftX, int rightX)
         {
             isPressed = isPrssd;
@@ -46,8 +61,10 @@ namespace KinectColorApp
         public void setRightX(int newRightX) { rightXcoordinate = newRightX; }
 
         // later on, make this pass by reference
-        public List<CardController> initializeCards (List<CardController> cards)
+        public List<CardController> initializeCards ()
         {
+            List<CardController> cards = new List<CardController>(20);
+
             /* --------------- THE GAME BOARD IS ORGANIZED ASSUMING THE FOLLOWING CARD PLACEMENT -------------------
 
                 0       1       2       3       4
@@ -58,6 +75,7 @@ namespace KinectColorApp
                 note that not all 20 cards need be displayed at once, however their locations and sizes are absolute
             ------------------------------------------------------------------------------------------------------*/
             // Hardcode in 20 cards, directly into the list that's returned
+            // Code x and y coordinates as a function of xResolution and yResolution
             cards[0]  = new CardController(false, 0, 1, 2, 3);  // card 0 is top left
             cards[1]  = new CardController(false, 0, 1, 2, 3);  // card 1 is second from left, top row
             cards[2]  = new CardController(false, 0, 1, 2, 3);
@@ -88,11 +106,23 @@ namespace KinectColorApp
         // will have to later update so that it's only looking at cards that are still on the board
         // if the location of the touch is within a card's boundaries, isPressed flips to true.
         // Not sure where to reset isPressed to false yet though
-        public List<CardController> updatePressed (List <CardController> cards, short[] rawDepthData)
+        public List<CardController> updatePressed (List <CardController> cards, double x, double y)
         {
-            // change the argument when i figure out what constitutes a coordinate - probably more specific than raw depth data
 
-            cards[1].isPressed(true);  // etc
+            // I am not positive - needs further testing
+            // This logic assumes that the bottom left of the screen is x=0,y=0, top right x=640, y=480
+            for (int i = 0; i < 20; i++)
+            {
+                // if x < rightXcoord && x > leftxcoord && y < topYcord && y > bottomYcoord
+                if ( x < cards[i].rightXcoordinate && x > cards[i].leftXcoordinate && y < cards[i].topYcoordinate && y > cards[i].bottomYcoordinate)
+                {
+                    //card is pressed is set to true
+                    cards[i].setPressed(true);
+                    Console.WriteLine("Card ", i, " is pressed ");
+                }
+
+            }
+
             return cards;
         }
 

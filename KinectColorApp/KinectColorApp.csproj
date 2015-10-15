@@ -92,6 +92,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="CalibrationController.cs" />
+    <Compile Include="CardController.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="SoundController.cs" />
     <Page Include="MainWindow.xaml">
@@ -128,6 +129,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
     <None Include="KinectColorApp_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

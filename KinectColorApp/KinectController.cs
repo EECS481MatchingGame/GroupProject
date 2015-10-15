@@ -13,12 +13,13 @@ using System.Windows.Media.Effects;
 
 namespace KinectColorApp
 {
-    class KinectController
+    class KinectController : CardController
     {
         private Image debugImage;
         private DrawController drawController;
         private SoundController soundController;
         Ellipse[] buttons;
+        private List<CardController> cards;
 
         DateTime last_background_change = DateTime.Now;
         private bool hasSetDepthThreshold = false;
@@ -30,12 +31,13 @@ namespace KinectColorApp
         private Point topLeft;
         private Point bottomRight;
 
-        public KinectController(DrawController dController, Image image, SoundController sController, Ellipse[] buttons)
+        public KinectController(DrawController dController, Image image, SoundController sController, Ellipse[] buttons, CardController cardData)
         {
             debugImage = image;
             drawController = dController;
             soundController = sController;
             this.buttons = buttons;
+            cards = cardData.initializeCards();
         }
 
         public void Calibrate(int top_left_x, int top_left_y, int bottom_right_x, int bottom_right_y)
@@ -87,7 +89,6 @@ namespace KinectColorApp
             depthFrame.CopyPixelDataTo(rawDepthData);
 
             int minDepth = DepthThreshold;
-            int bestDepthIndex = -1;
             int minDepthIndex = (int)this.topLeft.Y * depthFrame.Width;
             int maxDepthIndex = (int)this.bottomRight.Y * depthFrame.Width;
 
@@ -111,17 +112,33 @@ namespace KinectColorApp
                 
                 // Ignore invalid depth values
                 if (depth == -1 || depth == 0) continue;
-                
 
+                double x_kinect = (depthIndex % depthFrame.Width);
+                double y_kinect = (depthIndex / depthFrame.Width);
+
+                double x = x_kinect * calibration_coefficients[0] + y_kinect * calibration_coefficients[1] + calibration_coefficients[2] + 3;
+                double y = x_kinect * calibration_coefficients[3] + y_kinect * calibration_coefficients[4] + calibration_coefficients[5] + 10;
+
+                // This is our new function to determine which cards were pressed
+                // at the moment, cards are never reset to false - no way to determine depress.  that'll take a separate function
+                cards = updatePressed(cards, x, y);
+                
+                /*
+                No longer going to use bestDepthIndex logic - but keep minDepth and calculations above it
                 if (depth < minDepth)
                 {
                     minDepth = depth;
                     bestDepthIndex = depthIndex;
-                }
+                }*/
             }
 
+            /* --------------
+            Commented out the below code - keep for later reference.  We don't need to draw if the touch was found yet,
+            and when we do, it won't be in this implementation
+            -----------------*/
+
             // Draw if a touch was found
-            if (bestDepthIndex >= 0)
+            /*if (bestDepthIndex >= 0)
             {
                 Console.WriteLine("here");
                 if (!this.hasSetDepthThreshold) {
@@ -144,7 +161,7 @@ namespace KinectColorApp
                 }
 
                 gotTouch = false;
-            }
+            }*/
         }
 
         private void DrawPoint(DepthImageFrame depthFrame, int depthIndex, int minDepth)
