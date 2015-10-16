@@ -46,7 +46,7 @@ namespace KinectColorApp
         public void setRightX(int newRightX) { rightXcoordinate = newRightX; }
 
         // later on, make this pass by reference
-        public List<CardController> initializeCards (List<CardController> cards)
+        public static initializeCards (ref List<CardController> cards)
         {
             /* --------------- THE GAME BOARD IS ORGANIZED ASSUMING THE FOLLOWING CARD PLACEMENT -------------------
 
@@ -78,7 +78,6 @@ namespace KinectColorApp
             cards[17] = new CardController(false, 0, 1, 2, 3);
             cards[18] = new CardController(false, 0, 1, 2, 3);
             cards[19] = new CardController(false, 0, 1, 2, 3);  // card 19 is the bottom right card
-            return cards;   // is this necessary?  does C# pass by reference?
         }
         
 
@@ -88,12 +87,11 @@ namespace KinectColorApp
         // will have to later update so that it's only looking at cards that are still on the board
         // if the location of the touch is within a card's boundaries, isPressed flips to true.
         // Not sure where to reset isPressed to false yet though
-        public List<CardController> updatePressed (List <CardController> cards, short[] rawDepthData)
+        public static updatePressed (ref List <CardController> cards, short[] rawDepthData)
         {
             // change the argument when i figure out what constitutes a coordinate - probably more specific than raw depth data
 
             cards[1].isPressed(true);  // etc
-            return cards;
         }
 
     }
