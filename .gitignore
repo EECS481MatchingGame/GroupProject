@@ -2,3 +2,7 @@
 *.exe
 KinectColorApp/bin/Debug/app.publish/KinectColorApp.exe
 *.dll
+*.exe
+*.manifest
+*.application
+*.exe
