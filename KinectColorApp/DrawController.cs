@@ -72,7 +72,7 @@ namespace KinectColorApp
 			Console.WriteLine("Changing background to " + background);
 
 			backgroundAlreadySet = true;
-			backgroundImage.Source = new BitmapImage(background.uri);
+		    backgroundImage.Source = new BitmapImage(background.uri);
 			ClearScreen();
 		}
         public void ChangeBackground(Background new_background)
@@ -80,7 +80,7 @@ namespace KinectColorApp
 			Console.WriteLine("Changing background to " + new_background.uri);
 
 			backgroundAlreadySet = true;
-			backgroundImage.Source = new BitmapImage(new_background.uri);
+		    backgroundImage.Source = new BitmapImage(new_background.uri);
 
 			// And, in any case, clear screen:
 			ClearScreen();
@@ -229,7 +229,7 @@ namespace KinectColorApp
 
 		public void findAndInitializeBackgrounds()
 		{
-			string dropBox = @"C:\Users\Evan\Dropbox";
+			string dropBox = @"C:\Users\Phoebe Mirman\Desktop\finalgp\KinectColorApp\Resources";
 
 			string[] fileEntries = Directory.GetFiles(dropBox);
 			foreach(string file in fileEntries)
