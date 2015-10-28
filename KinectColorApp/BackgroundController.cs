@@ -14,7 +14,7 @@ using System.Windows;
 
 namespace KinectColorApp
 {
-    class BackgroundController
+    class BackgroundController 
     {
         private List<CardController> cards;
         private string[] backgrounds;
@@ -40,11 +40,13 @@ namespace KinectColorApp
 
                 img.Source = bitmapImage;
 
-                Canvas.SetLeft(img, cards.ElementAt(i).rightXcoordinate);
-                Canvas.SetTop(img, cards.ElementAt(i).topYcoordinate);
-                grid.Children.Add(img);
+               
+                cards.ElementAt(i).setImage(img);
+                grid.Children.Add(cards.ElementAt(i).getImage());
 
                 
+
+
             }
         }
 
