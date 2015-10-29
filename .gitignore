@@ -1,8 +1,11 @@
+# Folders to ignore
+KinectColorApp/bin/Debug/
+KinectColorApp/obj/Debug/
+
+# Files to ignore
+.suo
+.DS_Store
 *.exe
-*.exe
-KinectColorApp/bin/Debug/app.publish/KinectColorApp.exe
 *.dll
-*.exe
 *.manifest
 *.application
-*.exe
