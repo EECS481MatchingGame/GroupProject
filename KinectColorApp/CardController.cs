@@ -15,7 +15,7 @@ using System.Windows;
 namespace KinectColorApp
 {
     // internal class?
-    class CardController 
+    class CardController
     {
         // variables contained in card - we can add more!  Such as an image file, bool showOnBoard, etc
         public bool isPressed;
@@ -30,7 +30,7 @@ namespace KinectColorApp
         public static int width = 50;
         public static int height = 72;
         public bool isShown;
-        public Image img; 
+        public Button img; 
 
         // constructor that takes no arguments
         public CardController()
@@ -66,14 +66,14 @@ namespace KinectColorApp
         public void setLeftX(int newLeftX) { leftXcoordinate = newLeftX; }
         public void setRightX(int newRightX) { rightXcoordinate = newRightX; }
 
-        public void setImage(Image i)
+        public void setImage(Button i)
         {
             img = i;
             Canvas.SetLeft(img, rightXcoordinate);
             Canvas.SetTop(img, topYcoordinate);
         }
 
-        public Image getImage()
+        public Button getImage()
         {
             return img;
         }

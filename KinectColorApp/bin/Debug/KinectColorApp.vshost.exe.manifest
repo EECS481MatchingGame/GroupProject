@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinectColorApp.exe" size="10360224">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="KinectColorApp.exe" size="10360736">
       <assemblyIdentity name="KinectColorApp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Xx+JhTWhnrXSv0FY4o0vfgNAdYIlT109zKqLweqs6xo=</dsig:DigestValue>
+        <dsig:DigestValue>C67KlspUS5zOqzflzW04E4Nz6YLHdZkZZVu397eq4Ao=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
