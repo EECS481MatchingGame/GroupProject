@@ -28,26 +28,44 @@ namespace KinectColorApp
 
 
             setCardBackgrounds();
-       }
+            cards.ElementAt(0).getImage().BorderBrush = Brushes.Red;
 
- 
+        }
+
+
 
         public void setCardBackgrounds()
         {
-           for (int i = 0; i < cards.Count(); i++) { 
-                var img = new Image { Width = 50, Height = 72};
-                var bitmapImage = new BitmapImage(new Uri(backgrounds.ElementAt(i)));
+           for (int i = 0; i < cards.Count(); i++) {
+                Button myButton = new Button
+                {
+                    Width = 50,
+                    Height = 72,
+                    Content = new Image
+                    {
+                        Source = new BitmapImage(new Uri(backgrounds.ElementAt(i))),
+                        VerticalAlignment = VerticalAlignment.Center
+                    }
+                };
 
-                img.Source = bitmapImage;
+                myButton.Background = Brushes.Transparent;
+             
+                Canvas.SetLeft(myButton, cards.ElementAt(i).rightXcoordinate);
+                Canvas.SetTop(myButton, cards.ElementAt(i).topYcoordinate);
+                //var img = new Image { Width = 50, Height = 72};
+                //var bitmapImage = new BitmapImage(new Uri(backgrounds.ElementAt(i)));
 
-               
-                cards.ElementAt(i).setImage(img);
+                //img.Source = bitmapImage;
+                cards.ElementAt(i).setImage(myButton);
+
+
                 grid.Children.Add(cards.ElementAt(i).getImage());
 
-                
 
 
             }
+
+            cards.ElementAt(0).img.Background = Brushes.Red;
         }
 
         public void restartBoard()

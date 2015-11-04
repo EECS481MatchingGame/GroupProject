@@ -27,6 +27,7 @@ namespace KinectColorApp
         {
             public MainWindow()
             {
+
                 InitializeComponent();
 
          
