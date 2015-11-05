@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,9 +44,9 @@ namespace KinectColorApp
                 soundController = new SoundController();
                 cardController = new CardController();
 
-                string dropBox = @"C:\Users\Phoebe Mirman\Desktop\finalgp\KinectColorApp\Resources\sprites\animals";
+            string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";
 
-                string[] fileEntries = System.IO.Directory.GetFiles(dropBox);
+            string[] fileEntries = Directory.GetFiles(dropBox);
 
             string[] files = fileEntries;
             int array1OriginalLength = fileEntries.Length;

@@ -1,11 +1,12 @@
 # Folders to ignore
-KinectColorApp/bin/Debug/
-KinectColorApp/obj/Debug/
+KinectforWindowsSDKV1/Dependencies/KinectWpfViewers/bin/
+KinectforWindowsSDKV1/Dependencies/KinectWpfViewers/obj/
+KinectColorApp/bin/
+KinectColorApp/obj/
 
 # Files to ignore
 .suo
 .DS_Store
 *.exe
-*.dll
 *.manifest
 *.application

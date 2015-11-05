@@ -229,9 +229,9 @@ namespace KinectColorApp
 
 		public void findAndInitializeBackgrounds()
 		{
-			string dropBox = @"C:\Users\Phoebe Mirman\Desktop\finalgp\KinectColorApp\Resources";
+			string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources";
 
-			string[] fileEntries = Directory.GetFiles(dropBox);
+            string[] fileEntries = Directory.GetFiles(dropBox);
 			foreach(string file in fileEntries)
 			{ 
 				if(file.Substring(file.Length - 4, 4).Equals(".png"))
