@@ -95,7 +95,7 @@ namespace KinectColorApp
             minDepthIndex = 0;
             maxDepthIndex = 479 * depthFrame.Width;
 
-            Console.WriteLine(minDepthIndex + " " + depthFrame.Width);
+            Console.WriteLine("minDepthIndex: ", minDepthIndex + " depthFrame.Width" + depthFrame.Width);
             for (int depthIndex = minDepthIndex; depthIndex < maxDepthIndex; depthIndex++)
             {/*
                 // Skip this depth index if it's horizontally outside of our textile
