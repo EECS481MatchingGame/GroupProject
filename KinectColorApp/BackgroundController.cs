@@ -43,7 +43,7 @@ namespace KinectColorApp
                     Height = 72,
                     Content = new Image
                     {
-                        Source = new BitmapImage(new Uri(backgrounds.ElementAt(i))),
+                        Source = new BitmapImage(new Uri(backgrounds.ElementAt(i % backgrounds.Count()))),
                         VerticalAlignment = VerticalAlignment.Center
                     }
                 };
