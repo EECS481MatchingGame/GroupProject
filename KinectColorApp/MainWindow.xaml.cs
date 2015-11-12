@@ -124,7 +124,7 @@ namespace KinectColorApp
 
                 backgroundController = new BackgroundController(drawingCanvas, fileEntries, cards);
                 calibrationLabel.Content = "Done!";
-                /*DoubleAnimation newAnimation = new DoubleAnimation();
+                DoubleAnimation newAnimation = new DoubleAnimation();
                 newAnimation.From = calibrationLabel.Opacity;
                 newAnimation.To = 0.0;
                 newAnimation.Duration = new System.Windows.Duration(TimeSpan.FromSeconds(2));
@@ -132,7 +132,7 @@ namespace KinectColorApp
 
                 calibrationLabel.BeginAnimation(MediaElement.OpacityProperty, newAnimation, HandoffBehavior.SnapshotAndReplace);
 
-                backgroundImage.Visibility = Visibility.Visible;
+                /*backgroundImage.Visibility = Visibility.Visible;
                 drawBorder.Visibility = Visibility.Visible;
                 Canvas.SetZIndex(calibrationLabel, 2);
                 Canvas.SetZIndex(backgroundImage, 1);
