@@ -83,15 +83,6 @@ namespace KinectColorApp
         {
             List<CardController> cards = new List<CardController>(20);
 
-            /* --------------- THE GAME BOARD IS ORGANIZED ASSUMING THE FOLLOWING CARD PLACEMENT -------------------
-
-                0       1       2       3       4
-                5       6       7       8       9
-                10      11      12      13      14
-                15      16      17      18      19
-
-                note that not all 20 cards need be displayed at once, however their locations and sizes are absolute
-            ------------------------------------------------------------------------------------------------------*/
             // Hardcode in 20 cards, directly into the list that's returned
             // Code x and y coordinates as a function of xResolution and yResolution
 
@@ -103,11 +94,10 @@ namespace KinectColorApp
                 }
             }
 
-            return cards;   // is this necessary?  does C# pass by reference?
+            return cards;
         }
 
 
-        // later on, make this pass by reference
         // This function is only called if the depth is sufficient enough to constitute a press
         // It takes in the location of a press and the list of card locations
         // will have to later update so that it's only looking at cards that are still on the board
