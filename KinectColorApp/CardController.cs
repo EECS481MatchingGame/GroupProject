@@ -108,7 +108,7 @@ namespace KinectColorApp
 
             // I am not positive - needs further testing
             // This logic assumes that the bottom left of the screen is x=0,y=0, top right x=640, y=480
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < cards.Count(); i++)
             {
                 // if x < rightXcoord && x > leftxcoord && y < topYcord && y > bottomYcoord
                 if (x < cards[i].rightXcoordinate && x > cards[i].leftXcoordinate && y < cards[i].topYcoordinate && y > cards[i].bottomYcoordinate)
