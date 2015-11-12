@@ -52,9 +52,6 @@ namespace KinectColorApp
             int array1OriginalLength = fileEntries.Length;
             Array.Resize<string>(ref fileEntries, array1OriginalLength + files.Length);
             Array.Copy(files, 0,fileEntries, array1OriginalLength, files.Length);
-           List<CardController> cards = cardController.initializeCards();
-
-            backgroundController = new BackgroundController(drawingCanvas, fileEntries, cards);
                 kinectController = new KinectController(drawController, image1, soundController, buttons, cardController);
             }
 
@@ -121,8 +118,13 @@ namespace KinectColorApp
 
             private void calibrationCompleted()
             {
+                string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";
+                string[] fileEntries = Directory.GetFiles(dropBox);
+                List<CardController> cards = cardController.initializeCards();
+
+                backgroundController = new BackgroundController(drawingCanvas, fileEntries, cards);
                 calibrationLabel.Content = "Done!";
-                DoubleAnimation newAnimation = new DoubleAnimation();
+                /*DoubleAnimation newAnimation = new DoubleAnimation();
                 newAnimation.From = calibrationLabel.Opacity;
                 newAnimation.To = 0.0;
                 newAnimation.Duration = new System.Windows.Duration(TimeSpan.FromSeconds(2));
@@ -151,7 +153,7 @@ namespace KinectColorApp
                 red_selector.Effect = glowEffect;
                 red_selector.Fill.Opacity = 1;
                 refresh_selector.Fill.Opacity = 1;
-                background_selector.Fill.Opacity = 1;
+                background_selector.Fill.Opacity = 1;*/
             }
 
             private void OnClick(object sender, MouseButtonEventArgs e)
