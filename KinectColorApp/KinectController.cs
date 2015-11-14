@@ -122,12 +122,8 @@ namespace KinectColorApp
                 // This is our new function to determine which cards were pressed
                 // at the moment, cards are never reset to false - no way to determine depress.  that'll take a separate function
                 // Need to only updatePressed if depth is past a certain threshold - what should that threshold be?
-<<<<<<< HEAD
-                //Console.WriteLine("Kinect Registered - Depth: " + depth + " X: " + x + " Y: " + y);
-=======
                 // Depth starting point might be around 2000
-                // Console.WriteLine("Kinect Registered - Depth: ", depth, " X: ", x, " Y: ", y);
->>>>>>> origin/master
+                //Console.WriteLine("Kinect Registered - Depth: " + depth + " X: " + x + " Y: " + y);
                 cards = updatePressed(cards, x, y);
                 
                 /*
