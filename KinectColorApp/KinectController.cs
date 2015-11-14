@@ -94,8 +94,8 @@ namespace KinectColorApp
 
             minDepthIndex = 0;
             maxDepthIndex = 479 * depthFrame.Width;
-
-            Console.WriteLine("minDepthIndex: " + minDepthIndex + " depthFrame.Width" + depthFrame.Width);
+            // This output was causin a crash I believe
+            // Console.WriteLine("minDepthIndex: " + minDepthIndex + " depthFrame.Width" + depthFrame.Width);
             for (int depthIndex = minDepthIndex; depthIndex < maxDepthIndex; depthIndex++)
             {/*
                 // Skip this depth index if it's horizontally outside of our textile
@@ -122,7 +122,12 @@ namespace KinectColorApp
                 // This is our new function to determine which cards were pressed
                 // at the moment, cards are never reset to false - no way to determine depress.  that'll take a separate function
                 // Need to only updatePressed if depth is past a certain threshold - what should that threshold be?
+<<<<<<< HEAD
                 //Console.WriteLine("Kinect Registered - Depth: " + depth + " X: " + x + " Y: " + y);
+=======
+                // Depth starting point might be around 2000
+                // Console.WriteLine("Kinect Registered - Depth: ", depth, " X: ", x, " Y: ", y);
+>>>>>>> origin/master
                 cards = updatePressed(cards, x, y);
                 
                 /*
@@ -175,6 +180,7 @@ namespace KinectColorApp
             double y = x_kinect * calibration_coefficients[3] + y_kinect * calibration_coefficients[4] + calibration_coefficients[5] + 10;
             
             foreach (Ellipse ellipse in buttons)
+
             {
                 double top = Canvas.GetTop(ellipse);
                 double left = Canvas.GetLeft(ellipse);

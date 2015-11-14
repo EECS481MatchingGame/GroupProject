@@ -233,8 +233,9 @@ namespace KinectColorApp
 
             string[] fileEntries = Directory.GetFiles(dropBox);
 			foreach(string file in fileEntries)
-			{ 
-				if(file.Substring(file.Length - 4, 4).Equals(".png"))
+			{
+                // Find a way to skip calibration and just display the board, and randomize cards.  find a way to show if they're matching
+                if(file.Substring(file.Length - 4, 4).Equals(".png"))
 				{ 
 					backgrounds.Add(new Background(file));
 					Console.WriteLine(file + ": Accepted");
