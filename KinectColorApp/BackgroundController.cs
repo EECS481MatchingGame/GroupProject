@@ -14,21 +14,23 @@ using System.Windows;
 
 namespace KinectColorApp
 {
-    class BackgroundController 
+    class BackgroundController
     {
         private List<CardController> cards;
         private string[] backgrounds;
         private Canvas grid;
 
+        private HashSet<int> selected = new HashSet<int>();
+        private HashSet<int> matched = new HashSet<int>();
+
         public BackgroundController(Canvas g, string[] b, List<CardController> c)
-       {
+        {
             grid = g;
             backgrounds = b;
             cards = c;
 
 
             setCardBackgrounds();
-            cards.ElementAt(0).getImage().BorderBrush = Brushes.Red;
 
         }
 
@@ -36,7 +38,8 @@ namespace KinectColorApp
 
         public void setCardBackgrounds()
         {
-           for (int i = 0; i < cards.Count(); i++) {
+            for (int i = 0; i < cards.Count(); i++)
+            {
                 Button myButton = new Button
                 {
                     Width = 50,
@@ -49,23 +52,18 @@ namespace KinectColorApp
                 };
 
                 myButton.Background = Brushes.Transparent;
-             
+                myButton.BorderBrush = Brushes.Black;
+
                 Canvas.SetLeft(myButton, cards.ElementAt(i).rightXcoordinate);
                 Canvas.SetTop(myButton, cards.ElementAt(i).topYcoordinate);
-                //var img = new Image { Width = 50, Height = 72};
-                //var bitmapImage = new BitmapImage(new Uri(backgrounds.ElementAt(i)));
-
-                //img.Source = bitmapImage;
-                cards.ElementAt(i).setImage(myButton);
+                cards.ElementAt(i).setButton(myButton);
 
 
-                grid.Children.Add(cards.ElementAt(i).getImage());
+                grid.Children.Add(cards.ElementAt(i).getButton());
 
 
 
             }
-
-            cards.ElementAt(0).img.Background = Brushes.Red;
         }
 
         public void restartBoard()
@@ -73,21 +71,50 @@ namespace KinectColorApp
 
         }
 
-        public void flipCard(int row, int col)
+        public void flipCard(int index)
         {
 
         }
 
-        public void selectCard(int row, int col)
+        private void setCardBorder(int index, Brush brush)
         {
-            //maybe change card border color
+            cards.ElementAt(index).getButton().BorderBrush = brush;
         }
 
-        public void unselectCard(int row, int col)
+        public void selectCard(int index)
         {
-
+            setCardBorder(index, Brushes.Red);
+            selected.Add(index);
+            if (selected.Count() == 2)
+            {
+                if (cards.ElementAt(index).checkMatch(cards.ElementAt(selected.First())))
+                {
+                    foreach (int i in selected)
+                    {
+                        matchCard(i);
+                    }
+                } else
+                {
+                    foreach (int i in selected)
+                    {
+                        unselectCard(i);
+                    }
+                }
+            }
         }
-
+        public void unselectCard(int index)
+        {
+            setCardBorder(index, Brushes.Black);
+            if (selected.Contains(index))
+            {
+                selected.Remove(index);
+            }
+        }
+        public void matchCard(int index)
+        {
+            setCardBorder(index, Brushes.Green);
+            matched.Add(index);
+        }
 
     }
 }
