@@ -18,6 +18,7 @@ namespace KinectColorApp
         private Image debugImage;
         private DrawController drawController;
         private SoundController soundController;
+        private BackgroundController backgroundController;
         Ellipse[] buttons;
         private List<CardController> cards;
 
@@ -125,6 +126,8 @@ namespace KinectColorApp
                 // Depth starting point might be around 2000
                 //Console.WriteLine("Kinect Registered - Depth: " + depth + " X: " + x + " Y: " + y);
                 cards = updatePressed(cards, x, y);
+
+                // USE BACKGROUNDCONTROLLER TO SELECT CARDS HERE
                 
                 /*
                 No longer going to use bestDepthIndex logic - but keep minDepth and calculations above it
@@ -165,6 +168,11 @@ namespace KinectColorApp
 
                 gotTouch = false;
             }*/
+        }
+
+        public void setBackgroundController(BackgroundController bController)
+        {
+            backgroundController = bController;
         }
 
         private void DrawPoint(DepthImageFrame depthFrame, int depthIndex, int minDepth)

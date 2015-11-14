@@ -119,6 +119,8 @@ namespace KinectColorApp
             List<CardController> cards = cardController.initializeCards();
 
             backgroundController = new BackgroundController(drawingCanvas, fileEntries, cards);
+            kinectController.setBackgroundController(backgroundController);
+
             calibrationLabel.Content = "Done!";
             DoubleAnimation newAnimation = new DoubleAnimation();
             newAnimation.From = calibrationLabel.Opacity;
