@@ -117,7 +117,7 @@ namespace KinectColorApp
                 {
                     //card is pressed is set to true
                     cards[i].setPressed(true);
-                    Console.WriteLine("Card ", i, " is pressed ");
+                    Console.WriteLine("Card " + i + " is pressed ");
                 }
 
             }

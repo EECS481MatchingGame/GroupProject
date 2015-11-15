@@ -45,7 +45,7 @@ namespace KinectColorApp
         {
             using (ColorImageFrame colorFrame = e.OpenColorImageFrame())
             {
-                Console.WriteLine("here");
+                //Console.WriteLine("here");
                 if (colorFrame == null) return;
 
                 byte[] pixels = new byte[colorFrame.PixelDataLength];
@@ -146,14 +146,14 @@ namespace KinectColorApp
 
                 if ((threshold - depth) > 150)
                 {
-                    Console.WriteLine(threshold - depth);
+                    //Console.WriteLine(threshold - depth);
                     // Get the point in the depth frame at the center of the barcode
                     double x_kinect = (depthIndex % depthFrame.Width);
                     double y_kinect = (depthIndex / depthFrame.Width);
                     Point p = new Point(x_kinect, y_kinect);
                     code_points[next_code_num] = p;
 
-                    Console.WriteLine("Found code " + next_code_num + " at (" + x_kinect + ", " + y_kinect + ").");
+                    //Console.WriteLine("Found code " + next_code_num + " at (" + x_kinect + ", " + y_kinect + ").");
                     return next_code_num;
                 }
             }
@@ -192,8 +192,8 @@ namespace KinectColorApp
                     Point p = new Point(converted_depth_point.X, converted_depth_point.Y);
                     code_points[code_num] = p;
 
-                    Console.WriteLine("Found code " + code_num + " at (" + center_x + ", " + center_y + ") in color coordinates.");
-                    Console.WriteLine("Translated to (" + p.X + ", " + p.Y + ") in depth coordinates.");
+                    //Console.WriteLine("Found code " + code_num + " at (" + center_x + ", " + center_y + ") in color coordinates.");
+                    //Console.WriteLine("Translated to (" + p.X + ", " + p.Y + ") in depth coordinates.");
                     return code_num;
                 }
             }

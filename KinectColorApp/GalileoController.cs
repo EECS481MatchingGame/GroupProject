@@ -45,13 +45,13 @@ namespace KinectColorApp
 
         public void listenToSerial()
         {
-            Console.WriteLine("start thread");
+            //Console.WriteLine("start thread");
             while (_continue)
             {
                 try
                 {
                     string message = port.ReadLine();
-                    Console.WriteLine("MESSAGE IS: " + message[0]);
+                    //Console.WriteLine("MESSAGE IS: " + message[0]);
                     // Change color:
                     if (message[0] == '0' || message[0] == '1' || message[0] == '2' || message[0] == '3')
                     {

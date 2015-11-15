@@ -76,7 +76,7 @@ namespace KinectColorApp {
 
         public void TriggerColorEffect(int c)
         {
-            System.Console.WriteLine("Playing sound color effect " + c);
+            //System.Console.WriteLine("Playing sound color effect " + c);
             effectPlayer.Stop();
             switch (c)
             {
