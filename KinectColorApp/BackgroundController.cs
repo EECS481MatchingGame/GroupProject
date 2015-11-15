@@ -16,25 +16,25 @@ namespace KinectColorApp
 {
     class BackgroundController
     {
+        private bool allCardsMatched = false;
         private List<CardController> cards;
         private string[] backgrounds;
         private Canvas grid;
-
         private HashSet<int> selected = new HashSet<int>();
         private HashSet<int> matched = new HashSet<int>();
+
+        private void setCardBorder(int index, Brush brush)
+        {
+            cards.ElementAt(index).getButton().BorderBrush = brush;
+        }
 
         public BackgroundController(Canvas g, string[] b, List<CardController> c)
         {
             grid = g;
             backgrounds = b;
             cards = c;
-
-
             setCardBackgrounds();
-
         }
-
-
 
         public void setCardBackgrounds()
         {
@@ -58,27 +58,22 @@ namespace KinectColorApp
                 Canvas.SetTop(myButton, cards.ElementAt(i).topYcoordinate);
                 cards.ElementAt(i).setButton(myButton);
 
-
                 grid.Children.Add(cards.ElementAt(i).getButton());
-
-
-
             }
         }
 
         public void restartBoard()
         {
+            // TODO: show winning msg and quit & restart buttons
+            if (allCardsMatched)
+            {
 
+            }
         }
 
         public void flipCard(int index)
         {
 
-        }
-
-        private void setCardBorder(int index, Brush brush)
-        {
-            cards.ElementAt(index).getButton().BorderBrush = brush;
         }
 
         public void selectCard(int index)
@@ -102,6 +97,7 @@ namespace KinectColorApp
                 }
             }
         }
+
         public void unselectCard(int index)
         {
             setCardBorder(index, Brushes.Black);
@@ -110,6 +106,7 @@ namespace KinectColorApp
                 selected.Remove(index);
             }
         }
+
         public void matchCard(int index)
         {
             setCardBorder(index, Brushes.Green);

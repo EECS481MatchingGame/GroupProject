@@ -22,10 +22,20 @@ using System.Windows.Media.Effects;
 namespace KinectColorApp
 {
     enum Colors { Red, Green, Blue, White };
-    //enum Backgrounds {Farm, Pokemon, Turtle, Planets, Pony, Car, AlreadySet};
 
     public partial class MainWindow : Window
     {
+        private CalibrationController calController;
+        private BackgroundController backgroundController;
+        private DrawController drawController;
+        private SoundController soundController;
+        private CardController cardController;
+        private KinectController kinectController;
+        private KinectSensor sensor;
+        bool has_started_calibrating = false;
+        int gameRuning = 0; // 0 is init, 1 is running, 2 is finished
+        Ellipse[] buttons;
+
         public MainWindow()
         {
 
@@ -51,16 +61,6 @@ namespace KinectColorApp
             kinectController = new KinectController(drawController, image1, soundController, buttons, cardController);
         }
 
-        private CalibrationController calController;
-        private BackgroundController backgroundController;
-        private DrawController drawController;
-        private SoundController soundController;
-        private CardController cardController;
-        private KinectController kinectController;
-        private KinectSensor sensor;
-        bool has_started_calibrating = false;
-        Ellipse[] buttons;
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             if (KinectSensor.KinectSensors.Count > 0)
@@ -76,17 +76,13 @@ namespace KinectColorApp
                     }
                     _0_code.Visibility = Visibility.Visible;
                     calController = new CalibrationController(sensor, kinectController, drawingCanvas, codes, image1);
-                    calController.CalibrationDidComplete += new CalibrationController.calibrationDidCompleteHandler(calibrationCompleted);
-                    //sensor.AllFramesReady += kinectController.SensorAllFramesReady;
-                    //calibrationCompleted();
+                    calController.CalibrationDidComplete += new CalibrationController.calibrationDidCompleteHandler(calibrationCompleted); 
 
                     this.sensor.AllFramesReady += calController.DisplayColorImageAllFramesReady;
                     this.sensor.ColorStream.Enable();
                     this.sensor.DepthStream.Enable();
-                    //this.sensor.ColorStream.CameraSettings.Contrast = 2.0;
 
                     Console.WriteLine("abc");
-
                     this.sensor.Start();
                 }
             }
@@ -128,30 +124,7 @@ namespace KinectColorApp
             newAnimation.Duration = new System.Windows.Duration(TimeSpan.FromSeconds(2));
             newAnimation.AutoReverse = false;
 
-            calibrationLabel.BeginAnimation(MediaElement.OpacityProperty, newAnimation, HandoffBehavior.SnapshotAndReplace);
-
-            /*backgroundImage.Visibility = Visibility.Visible;
-            drawBorder.Visibility = Visibility.Visible;
-            Canvas.SetZIndex(calibrationLabel, 2);
-            Canvas.SetZIndex(backgroundImage, 1);
-
-            foreach (Ellipse ellipse in buttons)
-            {
-                Canvas.SetLeft(ellipse, drawingCanvas.Width - ellipse.Width - 10);
-                ellipse.Visibility = Visibility.Visible;
-                ellipse.Fill.Opacity = 0.3;
-                //Canvas.SetZIndex(ellipse, 2);
-            }
-
-            DropShadowEffect glowEffect = new DropShadowEffect();
-            glowEffect.ShadowDepth = 0;
-            glowEffect.Opacity = 255;
-            glowEffect.BlurRadius = 30;
-            glowEffect.Color = Color.FromArgb(255, 255, 80, 44);
-            red_selector.Effect = glowEffect;
-            red_selector.Fill.Opacity = 1;
-            refresh_selector.Fill.Opacity = 1;
-            background_selector.Fill.Opacity = 1;*/
+            calibrationLabel.BeginAnimation(OpacityProperty, newAnimation, HandoffBehavior.SnapshotAndReplace);
         }
 
         private void OnClick(object sender, MouseButtonEventArgs e)
@@ -176,7 +149,6 @@ namespace KinectColorApp
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
             Console.WriteLine(e.Key.ToString());
-
             if (e.Key.ToString() == "R" || e.Key.ToString() == "F")
             {
                 drawController.ClearScreen();
@@ -234,7 +206,7 @@ namespace KinectColorApp
             drawController.ChangeColor(c);
         }
 
-        void StopKinect(KinectSensor sensor)
+        void stopKinect(KinectSensor sensor)
         {
             if (sensor != null)
             {
@@ -245,7 +217,7 @@ namespace KinectColorApp
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            StopKinect(this.sensor);
+            stopKinect(this.sensor);
         }
     }
 }

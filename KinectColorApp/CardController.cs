@@ -14,7 +14,6 @@ using System.Windows;
 
 namespace KinectColorApp
 {
-    // internal class?
     class CardController
     {
         private static int boardWidth = 640;
@@ -23,46 +22,49 @@ namespace KinectColorApp
         public static int width = 50;
         public static int height = 72;
 
-        // variables contained in card - we can add more!  Such as an image file, bool showOnBoard, etc
+        // variables contained in card - we can add more!  Such as bool showOnBoard, etc
         public bool isPressed;
+        public bool isShown;
+        public int index; // a unique identifier for the card - maybe add another for "matched index?"
         public int topYcoordinate;
         public int bottomYcoordinate;
         public int leftXcoordinate;
         public int rightXcoordinate;
         public int centerXcoordinate;
         public int centerYcoordinate;
-        public bool isShown;
+        public String imgFileName;
         public Button button;
-        public int index;       // a unique identifier for the card - maybe add another for "matched index?"
+        
 
         // constructor that takes no arguments
         public CardController()
         {
             isShown = true;
             isPressed = false;
+            index = -1;
             topYcoordinate = 0;
             bottomYcoordinate = 0;
             leftXcoordinate = 0;
             rightXcoordinate = 0;
             centerXcoordinate = 0;
             centerYcoordinate = 0;
-            index = -1;
+            imgFileName = null;
         }
 
         // constructor that takes (more) arguments
-        public CardController(bool isShwn, bool isPrssd, int topY, int leftX, int indx)
+        public CardController(bool isShwn, bool isPrssd, int topY, int leftX, int indx, String img)
         {
             isShown = isShwn;
             isPressed = isPrssd;
+            index = indx;
             topYcoordinate = topY;
             leftXcoordinate = leftX;
             bottomYcoordinate = topY + height;
             rightXcoordinate = leftX + width;
             centerXcoordinate = (leftXcoordinate + rightXcoordinate) / 2;
             centerYcoordinate = (topYcoordinate + bottomYcoordinate) / 2;
-            index = indx;
+            imgFileName = img;
         }
-
 
         // create methods for each value
         public void setPressed(bool press) { isPressed = press; }
@@ -70,6 +72,7 @@ namespace KinectColorApp
         public void setBotY(int newBotY) { bottomYcoordinate = newBotY; }
         public void setLeftX(int newLeftX) { leftXcoordinate = newLeftX; }
         public void setRightX(int newRightX) { rightXcoordinate = newRightX; }
+        public void setImg(String img) { imgFileName = img; }
 
         public void setButton(Button i)
         {
@@ -90,19 +93,16 @@ namespace KinectColorApp
 
             // Hardcode in 20 cards, directly into the list that's returned
             // Code x and y coordinates as a function of xResolution and yResolution
-
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 6; j++)
                 {
                     int setIndex = (i * 6) + j; // gives each card a unique identifier
-                    cards.Add(new CardController(true, false, 20 + i * 2 * height, 20 + j * 2 * width, setIndex ));
+                    cards.Add(new CardController(true, false, 20 + i * 2 * height, 20 + j * 2 * width, setIndex, null));
                 }
             }
-
             return cards;
         }
-
 
         // This function is only called if the depth is sufficient enough to constitute a press
         // It takes in the location of a press and the list of card locations
@@ -111,21 +111,19 @@ namespace KinectColorApp
         {
 
             // TODO - does cards.Count() only look at cards that are still on the board?  does it even matter?
-            
             // This logic assumes that the bottom left of the screen is x=0,y=0, top right x=640, y=480
             for (int i = 0; i < cards.Count(); i++)
             {
                 // if x < rightXcoord && x > leftxcoord && y < topYcord && y > bottomYcoord
                 if (x < cards[i].rightXcoordinate && x > cards[i].leftXcoordinate && y < cards[i].topYcoordinate && y > cards[i].bottomYcoordinate)
                 {
-                    //card is pressed is set to true
+                    // card is pressed is set to true
                     //cards[i].setPressed(true);
                     Console.WriteLine("Card " + i + " is pressed ");
                     return cards[i].index;  // return the index num of the card in these coordinates
                 }
 
             }
-
             // no card was found at these coordinates, returns -1
             return -1;
         }
@@ -133,14 +131,17 @@ namespace KinectColorApp
         // determines whether or not this card matches with another
         public Boolean checkMatch(CardController other)
         {
-            // TODO this function
-
-            // Need to get the filename or some association of what matches with what, 
-            // and compare this.index with other.matchingIndex
-
-            // how are files imported/do they have any association to a card?
-
-            return true;
+            if (imgFileName == null || other.imgFileName == null)
+            {
+                return false;
+            }
+            else {
+                if (imgFileName.CompareTo(other.imgFileName) == 0)
+                {
+                    return true;
+                }
+                else return false;
+            }
         }
 
     }

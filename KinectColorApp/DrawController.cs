@@ -14,17 +14,14 @@ using System.Windows;
 
 namespace KinectColorApp
 {
-
     class DrawController
     {
         private Colors color = Colors.Red;
-
-		public bool backgroundAlreadySet = true;
-
         private double ColorChangeSpeed = 60.0; // How fast does the color change with depth? smaller number changes faster.
-
-        public int shouldChangeColor = -1;
         int prevBackground = 0;
+
+        public bool backgroundAlreadySet = true;
+        public int shouldChangeColor = -1;
         
         public Canvas drawingCanvas;
         public Image backgroundImage;
@@ -56,7 +53,6 @@ namespace KinectColorApp
 			{
 				currBackground = 0;
 			}
-
 			prevBackground = currBackground;
 			background = backgrounds[currBackground];
 			backgroundAlreadySet = false;
@@ -70,7 +66,6 @@ namespace KinectColorApp
 		public void ChangeBackground()
         {
 			Console.WriteLine("Changing background to " + background);
-
 			backgroundAlreadySet = true;
 		    backgroundImage.Source = new BitmapImage(background.uri);
 			ClearScreen();
@@ -78,23 +73,18 @@ namespace KinectColorApp
         public void ChangeBackground(Background new_background)
         {
 			Console.WriteLine("Changing background to " + new_background.uri);
-
 			backgroundAlreadySet = true;
 		    backgroundImage.Source = new BitmapImage(new_background.uri);
-
-			// And, in any case, clear screen:
+			// In any case, clear screen
 			ClearScreen();
-
         }
 
         public void ChangeColor(Colors new_color)
         {
             color = new_color;
-            
-            // Reset shouldChangeColor:
+            // Reset shouldChangeColor
             shouldChangeColor = -1;
-
-            // Change colorRects color:
+            // Change colorRects color
             LinearGradientBrush gradientBrush = new LinearGradientBrush();
             gradientBrush.StartPoint = new Point(0.5, 0);
             gradientBrush.EndPoint = new Point(0.5, 1);
@@ -119,8 +109,7 @@ namespace KinectColorApp
                 gradientBrush.GradientStops.Add(new GradientStop(Color.FromArgb(0, 250, 250, 250), 0));
                 gradientBrush.GradientStops.Add(new GradientStop(Color.FromArgb(255, 100, 100, 100), 1.0));
             }
-            
-            // Change color indicator:
+            // Change color indicator
             //colorRect.Fill = gradientBrush;
         }
 
@@ -129,7 +118,6 @@ namespace KinectColorApp
             // Create an ellipse with a gradient brush
             Ellipse myEllipse = new Ellipse();
             RadialGradientBrush brush = new RadialGradientBrush();
-
             int colorValue = (int)(255 * (depth / ColorChangeSpeed));
             if (colorValue < 0) colorValue = 0;
             if (colorValue > 255) colorValue = 255;
@@ -185,7 +173,6 @@ namespace KinectColorApp
                     drawingCanvas.Children.Remove(shape);
                 }
             }
-
             canvasImage.Source = null;
         }
 
@@ -201,10 +188,10 @@ namespace KinectColorApp
             }
 
             var rtb = new RenderTargetBitmap(
-                (int)System.Windows.SystemParameters.PrimaryScreenWidth, //width 
-                (int)System.Windows.SystemParameters.PrimaryScreenHeight, //height 
-                96, //dpi x 
-                96, //dpi y 
+                (int)System.Windows.SystemParameters.PrimaryScreenWidth, // width 
+                (int)System.Windows.SystemParameters.PrimaryScreenHeight, // height 
+                96, // dpi x 
+                96, // dpi y 
                 PixelFormats.Pbgra32 // pixelformat 
                 );
             rtb.Render(drawingCanvas);
@@ -230,7 +217,6 @@ namespace KinectColorApp
 		public void findAndInitializeBackgrounds()
 		{
 			string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources";
-
             string[] fileEntries = Directory.GetFiles(dropBox);
 			foreach(string file in fileEntries)
 			{
@@ -251,7 +237,6 @@ namespace KinectColorApp
 	class Background
 	{
 		public Uri uri;
-
 		public Background(string inUriString)
 		{
 				uri = new Uri(inUriString);
