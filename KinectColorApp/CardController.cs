@@ -32,7 +32,8 @@ namespace KinectColorApp
         public int centerXcoordinate;
         public int centerYcoordinate;
         public bool isShown;
-        public Button button; 
+        public Button button;
+        public int index;       // a unique identifier for the card - maybe add another for "matched index?"
 
         // constructor that takes no arguments
         public CardController()
@@ -45,10 +46,11 @@ namespace KinectColorApp
             rightXcoordinate = 0;
             centerXcoordinate = 0;
             centerYcoordinate = 0;
+            index = -1;
         }
 
         // constructor that takes (more) arguments
-        public CardController(bool isShwn, bool isPrssd, int topY, int leftX)
+        public CardController(bool isShwn, bool isPrssd, int topY, int leftX, int indx)
         {
             isShown = isShwn;
             isPressed = isPrssd;
@@ -58,6 +60,7 @@ namespace KinectColorApp
             rightXcoordinate = leftX + width;
             centerXcoordinate = (leftXcoordinate + rightXcoordinate) / 2;
             centerYcoordinate = (topYcoordinate + bottomYcoordinate) / 2;
+            index = indx;
         }
 
 
@@ -92,7 +95,8 @@ namespace KinectColorApp
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    cards.Add(new CardController(true, false, 20 + i * 2 * height, 20 + j * 2 * width));
+                    int setIndex = (i * 6) + j; // gives each card a unique identifier
+                    cards.Add(new CardController(true, false, 20 + i * 2 * height, 20 + j * 2 * width, setIndex ));
                 }
             }
 
@@ -103,12 +107,11 @@ namespace KinectColorApp
         // This function is only called if the depth is sufficient enough to constitute a press
         // It takes in the location of a press and the list of card locations
         // will have to later update so that it's only looking at cards that are still on the board
-        // if the location of the touch is within a card's boundaries, isPressed flips to true.
-        // Not sure where to reset isPressed to false yet though
-        public List<CardController> updatePressed(List<CardController> cards, double x, double y)
+        public int updatePressed(List<CardController> cards, double x, double y)
         {
 
-            // I am not positive - needs further testing
+            // TODO - does cards.Count() only look at cards that are still on the board?  does it even matter?
+            
             // This logic assumes that the bottom left of the screen is x=0,y=0, top right x=640, y=480
             for (int i = 0; i < cards.Count(); i++)
             {
@@ -116,20 +119,28 @@ namespace KinectColorApp
                 if (x < cards[i].rightXcoordinate && x > cards[i].leftXcoordinate && y < cards[i].topYcoordinate && y > cards[i].bottomYcoordinate)
                 {
                     //card is pressed is set to true
-                    cards[i].setPressed(true);
+                    //cards[i].setPressed(true);
                     Console.WriteLine("Card " + i + " is pressed ");
+                    return cards[i].index;  // return the index num of the card in these coordinates
                 }
 
             }
 
-            return cards;
+            // no card was found at these coordinates, returns -1
+            return -1;
         }
 
         // determines whether or not this card matches with another
         public Boolean checkMatch(CardController other)
         {
             // TODO this function
-            return false;
+
+            // Need to get the filename or some association of what matches with what, 
+            // and compare this.index with other.matchingIndex
+
+            // how are files imported/do they have any association to a card?
+
+            return true;
         }
 
     }

@@ -92,6 +92,8 @@ namespace KinectColorApp
             int minDepth = DepthThreshold;
             int minDepthIndex = (int)this.topLeft.Y * depthFrame.Width;
             int maxDepthIndex = (int)this.bottomRight.Y * depthFrame.Width;
+            int matchedIndex = -1;
+            int bestDepthIndex = -1;
 
             minDepthIndex = 0;
             maxDepthIndex = 479 * depthFrame.Width;
@@ -120,15 +122,32 @@ namespace KinectColorApp
                 double x = x_kinect * calibration_coefficients[0] + y_kinect * calibration_coefficients[1] + calibration_coefficients[2] + 3;
                 double y = x_kinect * calibration_coefficients[3] + y_kinect * calibration_coefficients[4] + calibration_coefficients[5] + 10;
 
-                // This is our new function to determine which cards were pressed
-                // at the moment, cards are never reset to false - no way to determine depress.  that'll take a separate function
-                // Need to only updatePressed if depth is past a certain threshold - what should that threshold be?
-                // Depth starting point might be around 2000
-                //Console.WriteLine("Kinect Registered - Depth: " + depth + " X: " + x + " Y: " + y);
-                cards = updatePressed(cards, x, y);
+
+                // TODO: For now this won't support multitouch - but should be okay for now
+                if (depth < minDepth)
+                {
+                    minDepth = depth;
+                    bestDepthIndex = depthIndex;
+                    Console.WriteLine("New bestDepthIndex is " + bestDepthIndex);
+                }
+
+                // if depth threshold is met:
+                if (bestDepthIndex >= 0)
+                {
+                    Console.WriteLine("Depth threshold of a press has been met");
+                    // check if x and y are within a card boundary that's still on the board
+                    matchedIndex = updatePressed(cards, x, y);
+                }
 
                 // USE BACKGROUNDCONTROLLER TO SELECT CARDS HERE
+                if ( matchedIndex > -1)
+                {
+                    Console.WriteLine("matchedIndex is not -1, updating backgroundController.selectCard()");
+                    backgroundController.selectCard(matchedIndex);
+                }
+                matchedIndex = -1;
                 
+
                 /*
                 No longer going to use bestDepthIndex logic - but keep minDepth and calculations above it
                 if (depth < minDepth)
