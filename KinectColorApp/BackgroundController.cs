@@ -87,33 +87,17 @@ namespace KinectColorApp
             selected.Add(index);
             if (selected.Count() == 2)
             {
-                if (cards.ElementAt(index).checkMatch(cards.ElementAt(selected.First())))
+                bool isMatching = cards.ElementAt(index).checkMatch(cards.ElementAt(selected.First()));
+                foreach (int i in selected)
                 {
-                    foreach (int i in selected)
+                    setCardBorder(i, isMatching ? Brushes.Green : Brushes.Black);
+                    if (isMatching)
                     {
-                        matchCard(i);
-                    }
-                } else
-                {
-                    foreach (int i in selected)
-                    {
-                        unselectCard(i);
+                        matched.Add(index);
                     }
                 }
+                selected.Clear();
             }
-        }
-        public void unselectCard(int index)
-        {
-            setCardBorder(index, Brushes.Black);
-            if (selected.Contains(index))
-            {
-                selected.Remove(index);
-            }
-        }
-        public void matchCard(int index)
-        {
-            setCardBorder(index, Brushes.Green);
-            matched.Add(index);
         }
 
     }

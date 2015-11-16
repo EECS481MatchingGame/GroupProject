@@ -64,7 +64,7 @@ namespace KinectColorApp
             {
                 drawController.ChangeBackground(drawController.background);
             }
-            
+
             // Check if we need to change color
             if (drawController.shouldChangeColor != -1)
             {
@@ -76,7 +76,7 @@ namespace KinectColorApp
                 if (depthFrame != null)
                 {
                     this.ParseDepthFrame(depthFrame);
-                } 
+                }
             }
         }
 
@@ -105,8 +105,8 @@ namespace KinectColorApp
                 int depth = rawDepthData[depthIndex] >> DepthImageFrame.PlayerIndexBitmaskWidth;
                 // Ignore invalid depth values
                 if (depth == -1 || depth == 0) continue;
-                
- 
+
+
 
                 if (depth < minDepth)
                 {
@@ -128,18 +128,20 @@ namespace KinectColorApp
                     soundController.StartMusic();
                     double x_kinect = (bestDepthIndex % depthFrame.Width);
                     double y_kinect = (bestDepthIndex / depthFrame.Width);
-                    if (bestDepthIndex < 75000)
+                    double x = x_kinect * calibration_coefficients[0] + y_kinect * calibration_coefficients[1] + calibration_coefficients[2] + 3;
+                    double y = x_kinect * calibration_coefficients[3] + y_kinect * calibration_coefficients[4] + calibration_coefficients[5] + 10;
+
+                    Console.WriteLine("KINECT: Touch registered at " + x_kinect + ", " + y_kinect + " at depth " + bestDepthIndex);
+                    Console.WriteLine("DEFAULT: Touch registered at " + x + ", " + y + " at depth " + bestDepthIndex);
+
+                    gotTouch = true;
+                    int matchedIndex = updatePressed(cards, x, y);
+                    if (matchedIndex >= 0)
                     {
-                        Console.WriteLine("Touch registered at " + x_kinect + ", " + y_kinect + " at depth " + bestDepthIndex);
-                        gotTouch = true;
-                        int matchedIndex = updatePressed(cards, x_kinect, y_kinect);
-                        if (matchedIndex >= 0)
-                        {
-                            Console.WriteLine("A press has been found at " + matchedIndex);
-                            backgroundController.selectCard(matchedIndex);
-                        }
-                        
+                        Console.WriteLine("A press has been found at " + matchedIndex);
+                        backgroundController.selectCard(matchedIndex);
                     }
+
                 }
             }
             else
@@ -200,7 +202,7 @@ namespace KinectColorApp
                 }*/
 
                 int depth = rawDepthData[depthIndex] >> DepthImageFrame.PlayerIndexBitmaskWidth;
-                
+
                 // Ignore invalid depth values
                 if (depth == -1 || depth == 0) continue;
 
@@ -304,13 +306,13 @@ namespace KinectColorApp
 
             double x = x_kinect * calibration_coefficients[0] + y_kinect * calibration_coefficients[1] + calibration_coefficients[2] + 3;
             double y = x_kinect * calibration_coefficients[3] + y_kinect * calibration_coefficients[4] + calibration_coefficients[5] + 10;
-            
+
             foreach (Ellipse ellipse in buttons)
 
             {
                 double top = Canvas.GetTop(ellipse);
                 double left = Canvas.GetLeft(ellipse);
-                
+
                 if (y >= top && x >= left && y <= top + ellipse.Height && x <= left + ellipse.Width)
                 {
                     DropShadowEffect glowEffect = new DropShadowEffect();
