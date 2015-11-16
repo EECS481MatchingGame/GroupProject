@@ -38,6 +38,8 @@ namespace KinectColorApp
 
         public void setCardBackgrounds()
         {
+            Random rng = new Random();
+            var randBackgrounds = backgrounds.OrderBy(a => rng.Next());
             for (int i = 0; i < cards.Count(); i++)
             {
                 Button myButton = new Button
@@ -46,7 +48,7 @@ namespace KinectColorApp
                     Height = 72,
                     Content = new Image
                     {
-                        Source = new BitmapImage(new Uri(backgrounds.ElementAt(i % backgrounds.Count()))),
+                        Source = new BitmapImage(new Uri(randBackgrounds.ElementAt(i % randBackgrounds.Count()))),
                         VerticalAlignment = VerticalAlignment.Center
                     }
                 };
