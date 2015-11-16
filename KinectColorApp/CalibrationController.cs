@@ -95,8 +95,8 @@ namespace KinectColorApp
                     //debugImage.Source = BitmapSource.Create(colorFrame.Width, colorFrame.Height, 96, 96, PixelFormats.Bgr32, null, pixels, stride);
                     //debugImage.Visibility = Visibility.Visible;
 
-                    //int code_num = find_code(colorFrame, depthFrame);
-                    int code_num = find_touch(colorFrame, depthFrame);
+                    int code_num = find_code(colorFrame, depthFrame);
+                    //int code_num = find_touch(colorFrame, depthFrame);
                     if (code_num >= 0)
                     {
                         // Make the next code visible.
