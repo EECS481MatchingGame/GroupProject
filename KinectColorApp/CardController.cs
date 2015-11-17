@@ -137,7 +137,13 @@ namespace KinectColorApp
         {
             // Need to get the filename or some association of what matches with what, 
             // and compare this.index with other.matchingIndexs
-            return ((Image)button.Content).Source == ((Image)other.button.Content).Source;
+            Console.WriteLine("Checking to see if a match between " + ((Image)button.Content).Source.ToString() + " and " + ((Image)other.button.Content).Source.ToString());
+            if (((Image)button.Content).Source.ToString().Equals(((Image)other.button.Content).Source.ToString()))
+                return true;
+            //if (((Image)button.Content).Source.ToString() == ((Image)other.button.Content).Source.ToString())
+            //    return true;
+
+            return false;
         }
 
     }

@@ -131,8 +131,8 @@ namespace KinectColorApp
                     double x = x_kinect * calibration_coefficients[0] + y_kinect * calibration_coefficients[1] + calibration_coefficients[2] + 3;
                     double y = x_kinect * calibration_coefficients[3] + y_kinect * calibration_coefficients[4] + calibration_coefficients[5] + 10;
 
-                    Console.WriteLine("KINECT: Touch registered at " + x_kinect + ", " + y_kinect + " at depth " + bestDepthIndex);
-                    Console.WriteLine("DEFAULT: Touch registered at " + x + ", " + y + " at depth " + bestDepthIndex);
+                    //Console.WriteLine("KINECT: Touch registered at " + x_kinect + ", " + y_kinect + " at depth " + bestDepthIndex);
+                    //Console.WriteLine("DEFAULT: Touch registered at " + x + ", " + y + " at depth " + bestDepthIndex);
 
                     gotTouch = true;
                     int matchedIndex = updatePressed(cards, x, y);

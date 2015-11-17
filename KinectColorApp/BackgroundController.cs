@@ -112,6 +112,9 @@ namespace KinectColorApp
             if (selected.Count() == 2)
             {
                 bool isMatching = cards.ElementAt(index).checkMatch(cards.ElementAt(selected.First()));
+                Console.WriteLine("Checking to see if card " + cards.ElementAt(index).index + " is equal to card " + cards.ElementAt(selected.First()).index);
+                if (isMatching)
+                    Console.WriteLine("!!!!!! We have a match ");
                 foreach (int i in selected)
                 {
                     setCardBorder(i, isMatching ? Brushes.Green : Brushes.Black);
