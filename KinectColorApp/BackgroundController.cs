@@ -112,15 +112,28 @@ namespace KinectColorApp
             if (selected.Count() == 2)
             {
                 bool isMatching = cards.ElementAt(index).checkMatch(cards.ElementAt(selected.First()));
-                Console.WriteLine("Checking to see if card " + cards.ElementAt(index).index + " is equal to card " + cards.ElementAt(selected.First()).index);
-                if (isMatching)
-                    Console.WriteLine("!!!!!! We have a match ");
+                //Console.WriteLine("Checking to see if card " + cards.ElementAt(index).index + " is equal to card " + cards.ElementAt(selected.First()).index);
+                //if (isMatching)
+                //    Console.WriteLine("!!!!!! We have a match ");
                 foreach (int i in selected)
                 {
                     setCardBorder(i, isMatching ? Brushes.Green : Brushes.Black);
                     if (isMatching)
                     {
                         matched.Add(i);
+                        // remove the card from list
+                        Console.WriteLine("remove card at index " + i);
+                        // card can only be removed by replacement of another blank card at the same spot on the grid
+                        CardController blankCard = new CardController(true, true, cards.ElementAt(i).topYcoordinate, cards.ElementAt(i).leftXcoordinate, i);
+                        Button blank = new Button
+                        {
+                            Width = CardController.width,
+                            Height = CardController.height
+                        };
+                        Canvas.SetLeft(blank, blankCard.rightXcoordinate);
+                        Canvas.SetTop(blank, blankCard.topYcoordinate);
+                        cards.ElementAt(i).setButton(blank);
+                        grid.Children.Add(cards.ElementAt(i).getButton());
                     }
                 }
                 selected.Clear();
