@@ -219,5 +219,7 @@ namespace KinectColorApp
         {
             stopKinect(this.sensor);
         }
+
+        // need a runnable function to check whether game finished and display the restart UI
     }
 }

@@ -64,7 +64,7 @@ namespace KinectColorApp
             {
                 drawController.ChangeBackground(drawController.background);
             }
-            
+
             // Check if we need to change color
             if (drawController.shouldChangeColor != -1)
             {
@@ -76,15 +76,103 @@ namespace KinectColorApp
                 if (depthFrame != null)
                 {
                     this.ParseDepthFrame(depthFrame);
-                } 
+                }
             }
         }
 
         #region Getting textile touches
 
         bool gotTouch = false;
+        // Evertyhing below is reverted
 
         private void ParseDepthFrame(DepthImageFrame depthFrame)
+        {
+            short[] rawDepthData = new short[depthFrame.PixelDataLength];
+            depthFrame.CopyPixelDataTo(rawDepthData);
+            int minDepth = DepthThreshold;
+            int bestDepthIndex = -1;
+            int minDepthIndex = (int)this.topLeft.Y * depthFrame.Width;
+            int maxDepthIndex = (int)this.bottomRight.Y * depthFrame.Width;
+
+            minDepthIndex = 0;
+            maxDepthIndex = 479 * depthFrame.Width;
+            //Console.WriteLine("maxDepthIndex = " + maxDepthIndex);
+
+            //Console.WriteLine(minDepthIndex + " " + depthFrame.Width);
+            for (int depthIndex = minDepthIndex; depthIndex < maxDepthIndex; depthIndex++)
+            {
+
+                int depth = rawDepthData[depthIndex] >> DepthImageFrame.PlayerIndexBitmaskWidth;
+                // Ignore invalid depth values
+                if (depth == -1 || depth == 0) continue;
+
+
+
+                if (depth < minDepth)
+                {
+                    minDepth = depth;
+                    bestDepthIndex = depthIndex;
+                }
+            }
+
+            // Draw if a touch was found
+            if (bestDepthIndex >= 0)
+            {
+                if (!this.hasSetDepthThreshold)
+                {
+                    this.DepthThreshold = minDepth - TextileSpacing;
+                    this.hasSetDepthThreshold = true;
+                }
+                else
+                {
+                    soundController.StartMusic();
+                    double x_kinect = (bestDepthIndex % depthFrame.Width);
+                    double y_kinect = (bestDepthIndex / depthFrame.Width);
+                    double x = x_kinect * calibration_coefficients[0] + y_kinect * calibration_coefficients[1] + calibration_coefficients[2] + 3;
+                    double y = x_kinect * calibration_coefficients[3] + y_kinect * calibration_coefficients[4] + calibration_coefficients[5] + 10;
+
+                    Console.WriteLine("KINECT: Touch registered at " + x_kinect + ", " + y_kinect + " at depth " + bestDepthIndex);
+                    Console.WriteLine("DEFAULT: Touch registered at " + x + ", " + y + " at depth " + bestDepthIndex);
+
+                    gotTouch = true;
+                    int matchedIndex = updatePressed(cards, x, y);
+                    if (matchedIndex >= 0)
+                    {
+                        Console.WriteLine("A press has been found at " + matchedIndex);
+                        backgroundController.selectCard(matchedIndex);
+                    }
+
+                }
+            }
+            else
+            {
+                if (gotTouch == true)
+                {
+                    soundController.StopMusic();
+                }
+
+                gotTouch = false;
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // Everything above is the reverted
+
+        private void ParseDepthFrameOld(DepthImageFrame depthFrame)
         {
             short[] rawDepthData = new short[depthFrame.PixelDataLength];
             depthFrame.CopyPixelDataTo(rawDepthData);
@@ -94,6 +182,8 @@ namespace KinectColorApp
             int maxDepthIndex = (int)this.bottomRight.Y * depthFrame.Width;
             int matchedIndex = -1;
             int bestDepthIndex = -1;
+            double checkThisX = 0;
+            double checkThisY = 0;
 
             minDepthIndex = 0;
             maxDepthIndex = 479 * depthFrame.Width;
@@ -112,7 +202,7 @@ namespace KinectColorApp
                 }*/
 
                 int depth = rawDepthData[depthIndex] >> DepthImageFrame.PlayerIndexBitmaskWidth;
-                
+
                 // Ignore invalid depth values
                 if (depth == -1 || depth == 0) continue;
 
@@ -128,25 +218,31 @@ namespace KinectColorApp
                 {
                     minDepth = depth;
                     bestDepthIndex = depthIndex;
-                    Console.WriteLine("New bestDepthIndex is " + bestDepthIndex);
                 }
 
-                // if depth threshold is met:
-                if (bestDepthIndex >= 0)
+                // if depth threshold is met: - set it to 200000, and why are x and y off?
+                if (bestDepthIndex >= 150000)
                 {
-                    Console.WriteLine("Depth threshold of a press has been met");
-                    // check if x and y are within a card boundary that's still on the board
-                    matchedIndex = updatePressed(cards, x, y);
-                }
+                    if (!this.hasSetDepthThreshold)
+                    {
+                        this.DepthThreshold = minDepth - TextileSpacing;
+                        this.hasSetDepthThreshold = true;
 
-                // USE BACKGROUNDCONTROLLER TO SELECT CARDS HERE
-                if ( matchedIndex > -1)
-                {
-                    Console.WriteLine("matchedIndex is not -1, updating backgroundController.selectCard()");
-                    backgroundController.selectCard(matchedIndex);
+                    }
+                    else
+                    {
+                        checkThisX = x_kinect;
+                        checkThisY = y_kinect;
+                        //Console.WriteLine("Depth threshold of a press has been met");
+                        // check if x and y are within a card boundary that's still on the board
+                        //Console.WriteLine("X = " + x + " Y = " + y);
+                        //Console.WriteLine("x_kinect = " + x_kinect + " y_kinect = " + y_kinect);
+                        //matchedIndex = updatePressed(cards, x_kinect, y_kinect);
+                    }
                 }
-                matchedIndex = -1;
-                
+                bestDepthIndex = -1;
+
+
 
                 /*
                 No longer going to use bestDepthIndex logic - but keep minDepth and calculations above it
@@ -156,6 +252,15 @@ namespace KinectColorApp
                     bestDepthIndex = depthIndex;
                 }*/
             }
+
+            //matchedIndex = updatePressed(cards, checkThisX, checkThisY);
+            // USE BACKGROUNDCONTROLLER TO SELECT CARDS HERE
+            if (matchedIndex > -1)
+            {
+                Console.WriteLine("matchedIndex is not -1, it is " + matchedIndex);
+                backgroundController.selectCard(matchedIndex);
+            }
+            matchedIndex = -1;
 
             /* --------------
             Commented out the below code - keep for later reference.  We don't need to draw if the touch was found yet,
@@ -201,13 +306,13 @@ namespace KinectColorApp
 
             double x = x_kinect * calibration_coefficients[0] + y_kinect * calibration_coefficients[1] + calibration_coefficients[2] + 3;
             double y = x_kinect * calibration_coefficients[3] + y_kinect * calibration_coefficients[4] + calibration_coefficients[5] + 10;
-            
+
             foreach (Ellipse ellipse in buttons)
 
             {
                 double top = Canvas.GetTop(ellipse);
                 double left = Canvas.GetLeft(ellipse);
-                
+
                 if (y >= top && x >= left && y <= top + ellipse.Height && x <= left + ellipse.Width)
                 {
                     DropShadowEffect glowEffect = new DropShadowEffect();
