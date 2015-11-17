@@ -91,19 +91,19 @@ namespace KinectColorApp
             // Hardcode in 20 cards, directly into the list that's returned
             // Code x and y coordinates as a function of xResolution and yResolution
 
-            /*for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 6; j++)
                 {
                     int setIndex = (i * 6) + j; // gives each card a unique identifier
                     // We have an issue here where the largest x is 570 and the largest y is 308
                     // we want the largest x to be 640 and the largest y to be 480
-                    cards.Add(new CardController(true, false, 20 + i * 2 * height, 20 + j * 2 * width, setIndex ));
+                    cards.Add(new CardController(true, false, 20 + i * 2 * height, 20 + j * 2 * width, setIndex));
                 }
-            }*/
+            }
 
             // shown, pressed, topY, leftX, index 
-            cards.Add( new CardController(true, false, 0, 0, 0));  // card 0 is top left from OUR perspective
+            /*cards.Add( new CardController(true, false, 0, 0, 0));  // card 0 is top left from OUR perspective
             cards.Add(new CardController(true, false, 0, 100, 1));  // card 1 is second from left, top row
             cards.Add(new CardController(true, false, 0, 200, 2));
             cards.Add(new CardController(true, false, 0, 300, 3));
@@ -120,7 +120,7 @@ namespace KinectColorApp
             cards.Add(new CardController(true, false, 300, 200, 14));
             cards.Add(new CardController(true, false, 300, 300, 15));
             cards.Add(new CardController(true, false, 300, 400, 16));
-            cards.Add(new CardController(true, false, 300, 500, 17));
+            cards.Add(new CardController(true, false, 300, 500, 17));*/
 
 
             return cards;
@@ -148,10 +148,10 @@ namespace KinectColorApp
             // This logic assumes that the bottom left of the screen is x=0,y=0, top right x=640, y=480
             for (int i = 0; i < cards.Count(); i++)
             {
-                Console.WriteLine("Given x= " + x + ", should be less than " + cards[i].rightXcoordinate + " and greater than " + cards[i].leftXcoordinate);
+                //Console.WriteLine("Given x= " + x + ", should be less than " + cards[i].rightXcoordinate + " and greater than " + cards[i].leftXcoordinate);
                 // if x < rightXcoord && x > leftxcoord && y < topYcord && y > bottomYcoord
 
-                Console.WriteLine("Given y= " + y + ", should be greater than " + cards[i].topYcoordinate + " and less than " + cards[i].bottomYcoordinate);
+                //Console.WriteLine("Given y= " + y + ", should be greater than " + cards[i].topYcoordinate + " and less than " + cards[i].bottomYcoordinate);
                 if (x < cards[i].rightXcoordinate && x > cards[i].leftXcoordinate && y > cards[i].topYcoordinate && y < cards[i].bottomYcoordinate)
                 {
                     //card is pressed is set to true
@@ -176,7 +176,7 @@ namespace KinectColorApp
 
             // how are files imported/do they have any association to a card?
 
-            return true;
+            return ((Image) button.Content).Source == ((Image)other.button.Content).Source;
         }
 
     }

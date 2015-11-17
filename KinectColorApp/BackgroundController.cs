@@ -39,13 +39,13 @@ namespace KinectColorApp
         public void setCardBackgrounds()
         {
             Random rng = new Random();
-            var randBackgrounds = backgrounds.OrderBy(a => rng.Next());
+            var randBackgrounds = backgrounds;//.OrderBy(a => rng.Next());
             for (int i = 0; i < cards.Count(); i++)
             {
                 Button myButton = new Button
                 {
-                    Width = 50,
-                    Height = 72,
+                    Width = CardController.width,
+                    Height = CardController.height,
                     Content = new Image
                     {
                         Source = new BitmapImage(new Uri(randBackgrounds.ElementAt(i % randBackgrounds.Count()))),
@@ -60,11 +60,7 @@ namespace KinectColorApp
                 Canvas.SetTop(myButton, cards.ElementAt(i).topYcoordinate);
                 cards.ElementAt(i).setButton(myButton);
 
-
                 grid.Children.Add(cards.ElementAt(i).getButton());
-
-
-
             }
         }
 
@@ -85,7 +81,11 @@ namespace KinectColorApp
 
         public void selectCard(int index)
         {
-            setCardBorder(index, Brushes.Red);
+            if (matched.Contains(index))
+            {
+                return;
+            }
+            setCardBorder(index, Brushes.Yellow);
             selected.Add(index);
             if (selected.Count() == 2)
             {
@@ -95,7 +95,7 @@ namespace KinectColorApp
                     setCardBorder(i, isMatching ? Brushes.Green : Brushes.Black);
                     if (isMatching)
                     {
-                        matched.Add(index);
+                        matched.Add(i);
                     }
                 }
                 selected.Clear();
