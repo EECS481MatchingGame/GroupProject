@@ -111,6 +111,10 @@ namespace KinectColorApp
         {
             setCardBorder(index, Brushes.Green);
             matched.Add(index);
+            if (matched.Count == cards.Count)
+            {
+                allCardsMatched = true;
+            }
         }
 
     }
