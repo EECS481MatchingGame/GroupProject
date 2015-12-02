@@ -1,0 +1,50 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WpfViewers="clr-namespace:Microsoft.Samples.Kinect.WpfViewers;assembly=Microsoft.Samples.Kinect.WpfViewers" x:Class="KinectColorApp.Menu"
+        Title="Menu" Height="718.178" Width="910.892" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_Size_Did_Change" WindowStyle="None" WindowState="Maximized">
+    <Canvas x:Name="menuCanvas">
+        <CheckBox
+             x:Name="easyCheck"
+	    Content="Easy"
+	    HorizontalAlignment="Left"
+	    VerticalAlignment="Top"
+	 Checked="CheckBox_Checked"
+	    Unchecked="CheckBox_Unchecked"
+            Canvas.Left="226" Canvas.Top="92"/>
+        <CheckBox
+        	x:Name="mediumCheck"
+        	Content="Medium"
+        	HorizontalAlignment="Left"
+        	VerticalAlignment="Top"
+        Checked="CheckBox_Checked"
+	    Unchecked="CheckBox_Unchecked"
+            Canvas.Left="225" Canvas.Top="112"/>
+        <CheckBox
+        	x:Name="hardCheck"
+        	Content="Hard"
+        	HorizontalAlignment="Left"
+        	VerticalAlignment="Top"
+       Checked="CheckBox_Checked"
+	    Unchecked="CheckBox_Unchecked"
+            Canvas.Left="224" Canvas.Top="132"/>
+
+        <Button x:Name="startButton"  Click="startGame" Canvas.Left="221" Canvas.Top="279" Height="114" Width="361">Start!</Button>
+
+        <Button Content="Select a Theme"
+        Click="Theme_Click"
+        ContextMenuService.IsEnabled="False" Canvas.Left="390" Canvas.Top="108">
+            <Button.ContextMenu>
+                <ContextMenu >
+                    <MenuItem Header="Animals"/>
+                    <MenuItem Header="Numbers"/>
+                    <MenuItem Header="Cars"/>
+                    <MenuItem Header="Candy"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+    </Canvas>
+
+
+
+</Window>

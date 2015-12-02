@@ -58,11 +58,12 @@ namespace KinectColorApp
             int array1OriginalLength = fileEntries.Length;
             Array.Resize<string>(ref fileEntries, array1OriginalLength + files.Length);
             Array.Copy(files, 0, fileEntries, array1OriginalLength, files.Length);
-            kinectController = new KinectController(drawController, image1, soundController, buttons, cardController);
+           kinectController = new KinectController(drawController, image1, soundController, buttons, cardController);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+          
             if (KinectSensor.KinectSensors.Count > 0)
             {
                 this.sensor = KinectSensor.KinectSensors[0];
@@ -86,9 +87,10 @@ namespace KinectColorApp
                     this.sensor.Start();
                 }
             }
+           
 
             this.KeyDown += new KeyEventHandler(OnKeyDown);
-            this.MouseDown += new MouseButtonEventHandler(OnClick);
+           this.MouseDown += new MouseButtonEventHandler(OnClick);
             this.MouseDoubleClick += new MouseButtonEventHandler(OnDoubleClick);
             soundController.StartMusic();
             drawController.ChangeBackground();
@@ -108,13 +110,21 @@ namespace KinectColorApp
             Canvas.SetLeft(backgroundImage, 0);
         }
 
+      
         private void calibrationCompleted()
         {
+            // make menu the main window
+            //Menu main = new Menu();
+           // App.Current.MainWindow = main;
+            //this.Close();
+            //main.Show();
+            
             string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";
             string[] fileEntries = Directory.GetFiles(dropBox);
             List<CardController> cards = cardController.initializeCards();
 
             backgroundController = new BackgroundController(drawingCanvas, fileEntries, cards);
+            
             kinectController.setBackgroundController(backgroundController);
 
             calibrationLabel.Content = "Done!";
@@ -125,10 +135,12 @@ namespace KinectColorApp
             newAnimation.AutoReverse = false;
 
             calibrationLabel.BeginAnimation(OpacityProperty, newAnimation, HandoffBehavior.SnapshotAndReplace);
-        }
+        
+            }
 
         private void OnClick(object sender, MouseButtonEventArgs e)
         {
+            
             if (!has_started_calibrating)
             {
                 Canvas.SetZIndex(image1, 0);
@@ -139,6 +151,7 @@ namespace KinectColorApp
                 has_started_calibrating = true;
                 image1.Source = null;
             }
+   
         }
 
         private void OnDoubleClick(object sender, MouseButtonEventArgs e)
