@@ -15,10 +15,11 @@ namespace KinectColorApp
     public partial class Menu : Window
     {
         private int difficulty = 0;
-        private String theme = "animals"; 
-        public Menu()
+        private String theme = "animals";
+        private GameBoard gameBoard; 
+        public Menu(GameBoard g)
         {
-
+            gameBoard = g;
             InitializeComponent();
 
         }
@@ -38,11 +39,9 @@ namespace KinectColorApp
 
         public void startGame(object sender, RoutedEventArgs e)
         {
-           
-            GameBoard main = new GameBoard(difficulty, theme);
-            App.Current.MainWindow = main;
+            App.Current.MainWindow = gameBoard;
             this.Close();
-            main.Show();
+            gameBoard.Show();
         }
 
         private void Theme_Click(object sender, RoutedEventArgs e)

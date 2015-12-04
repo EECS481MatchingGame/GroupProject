@@ -26,7 +26,7 @@ namespace KinectColorApp
     public partial class MainWindow : Window
     {
         private CalibrationController calController;
-        private BackgroundController backgroundController;
+        private GameBoard gameBoard; 
         private DrawController drawController;
         private SoundController soundController;
         private CardController cardController;
@@ -58,7 +58,7 @@ namespace KinectColorApp
             int array1OriginalLength = fileEntries.Length;
             Array.Resize<string>(ref fileEntries, array1OriginalLength + files.Length);
             Array.Copy(files, 0, fileEntries, array1OriginalLength, files.Length);
-           kinectController = new KinectController(drawController, image1, soundController, buttons, cardController);
+            kinectController = new KinectController(drawController, image1, soundController, buttons);
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -114,18 +114,14 @@ namespace KinectColorApp
         private void calibrationCompleted()
         {
             // make menu the main window
-            //Menu main = new Menu();
-           // App.Current.MainWindow = main;
-            //this.Close();
-            //main.Show();
             
             string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";
             string[] fileEntries = Directory.GetFiles(dropBox);
             List<CardController> cards = cardController.initializeCards();
 
-            backgroundController = new BackgroundController(drawingCanvas, fileEntries, cards);
+            gameBoard = new GameBoard(0, "animals", fileEntries, cards);
             
-            kinectController.setBackgroundController(backgroundController);
+            kinectController.setGameBoard(gameBoard);
 
             calibrationLabel.Content = "Done!";
             DoubleAnimation newAnimation = new DoubleAnimation();
@@ -135,8 +131,13 @@ namespace KinectColorApp
             newAnimation.AutoReverse = false;
 
             calibrationLabel.BeginAnimation(OpacityProperty, newAnimation, HandoffBehavior.SnapshotAndReplace);
-        
-            }
+
+            Menu main = new Menu(gameBoard);
+            App.Current.MainWindow = main;
+            //this.Close();
+            main.Show();
+
+        }
 
         private void OnClick(object sender, MouseButtonEventArgs e)
         {

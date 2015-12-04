@@ -18,9 +18,8 @@ namespace KinectColorApp
         private Image debugImage;
         private DrawController drawController;
         private SoundController soundController;
-        private BackgroundController backgroundController;
+        private GameBoard gameBoard;
         Ellipse[] buttons;
-        private List<CardController> cards;
 
         DateTime last_background_change = DateTime.Now;
         private bool hasSetDepthThreshold = false;
@@ -32,13 +31,12 @@ namespace KinectColorApp
         private Point topLeft;
         private Point bottomRight;
 
-        public KinectController(DrawController dController, Image image, SoundController sController, Ellipse[] buttons, CardController cardData)
+        public KinectController(DrawController dController, Image image, SoundController sController, Ellipse[] buttons)
         {
             debugImage = image;
             drawController = dController;
             soundController = sController;
             this.buttons = buttons;
-            cards = cardData.initializeCards();
         }
 
         public void Calibrate(int top_left_x, int top_left_y, int bottom_right_x, int bottom_right_y)
@@ -87,6 +85,8 @@ namespace KinectColorApp
 
         private void ParseDepthFrame(DepthImageFrame depthFrame)
         {
+            Console.WriteLine("parsing new");
+
             short[] rawDepthData = new short[depthFrame.PixelDataLength];
             depthFrame.CopyPixelDataTo(rawDepthData);
             int minDepth = DepthThreshold;
@@ -135,11 +135,11 @@ namespace KinectColorApp
                     //Console.WriteLine("DEFAULT: Touch registered at " + x + ", " + y + " at depth " + bestDepthIndex);
 
                     gotTouch = true;
-                    int matchedIndex = updatePressed(cards, x, y);
+                    int matchedIndex = updatePressed(gameBoard.getCards(), x, y);
                     if (matchedIndex >= 0)
                     {
                         Console.WriteLine("A press has been found at " + matchedIndex);
-                        backgroundController.selectCard(matchedIndex);
+                        gameBoard.selectCard(matchedIndex);
                     }
 
                 }
@@ -174,6 +174,8 @@ namespace KinectColorApp
 
         private void ParseDepthFrameOld(DepthImageFrame depthFrame)
         {
+            Console.WriteLine("parsing");
+
             short[] rawDepthData = new short[depthFrame.PixelDataLength];
             depthFrame.CopyPixelDataTo(rawDepthData);
 
@@ -258,7 +260,7 @@ namespace KinectColorApp
             if (matchedIndex > -1)
             {
                 Console.WriteLine("matchedIndex is not -1, it is " + matchedIndex);
-                backgroundController.selectCard(matchedIndex);
+                gameBoard.selectCard(matchedIndex);
             }
             matchedIndex = -1;
 
@@ -294,9 +296,9 @@ namespace KinectColorApp
             }*/
         }
 
-        public void setBackgroundController(BackgroundController bController)
+        public void setGameBoard(GameBoard gBoard)
         {
-            backgroundController = bController;
+            gameBoard = gBoard;
         }
 
         private void DrawPoint(DepthImageFrame depthFrame, int depthIndex, int minDepth)

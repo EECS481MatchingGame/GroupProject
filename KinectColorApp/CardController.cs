@@ -14,7 +14,7 @@ using System.Windows;
 
 namespace KinectColorApp
 {
-    class CardController
+    public class CardController
     {
         private static int boardWidth = 640;
         private static int boardHeight = 480;
