@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,15 +13,24 @@ namespace KinectColorApp
     // Interaction logic for App.xaml
     public partial class Menu : Window
     {
-        private int difficulty = 0; // 0 is easy, 1 is middle, 2 is hard
+        private String difficulty = "Hard"; 
         private String theme = "animals";
         private GameBoard gameBoard; 
-        public Menu(GameBoard g)
+        public Menu()
         {
-            gameBoard = g;
             InitializeComponent();
+            string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\flags";       // flags look really good
+            string[] fileEntries = Directory.GetFiles(dropBox);
+            List<CardController> cards = new List<CardController>(18);
+            gameBoard = gameBoard = new GameBoard(difficulty, "animals", fileEntries, cards);
+
         }
 
+        public void setGameBoard(GameBoard g)
+        {
+         //   gameBoard = g; 
+         
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -40,7 +50,7 @@ namespace KinectColorApp
             this.Close();
             gameBoard.Show();
         }
-
+      
         private void Theme_Click(object sender, RoutedEventArgs e)
         {
             (sender as Button).ContextMenu.IsEnabled = true;
@@ -48,17 +58,27 @@ namespace KinectColorApp
             (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             (sender as Button).ContextMenu.IsOpen = true;
         }
-
-        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        private void Difficulty_Click(object sender, RoutedEventArgs e)
         {
-            // need to uncheck other boxes 
-            CheckBox chk = (CheckBox)sender;
-            if (chk.Name == "easyCheck") difficulty = 0; 
+            (sender as Button).ContextMenu.IsEnabled = true;
+            (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
+            (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            (sender as Button).ContextMenu.IsOpen = true;
+            // HeaderMenu obj = new HeaderMenu(sender);
         }
 
-        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        public void clickDifficulty(object sender, EventArgs e)
         {
+            MenuItem item = (MenuItem)sender;
+            Console.WriteLine(item.Header);
+            difficulty = (String)item.Header;
+            difficultyMenu.Content = difficulty; 
+
         }
+
+     
+     
+
 
     }
 }

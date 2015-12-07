@@ -21,8 +21,9 @@ namespace KinectColorApp
     /// </summary>
     public partial class GameBoard : Window
     {
-        private int difficulty;
+        private string difficulty;
         private string theme;
+        private int numCards = 9;
 
         private List<CardController> cards;
         private string[] backgrounds;
@@ -31,7 +32,7 @@ namespace KinectColorApp
         private HashSet<int> matched;
 
 
-        public GameBoard(int d, string t, string[] b, List<CardController> c)
+        public GameBoard(string d, string t, string[] b, List<CardController> c)
         {
             InitializeComponent();
             difficulty = d;
@@ -41,6 +42,17 @@ namespace KinectColorApp
             selected = new HashSet<int>();
             matched = new HashSet<int>();
             setCardBackgrounds();
+
+            if (difficulty.Equals("Easy"))
+            {
+                numCards = 3;
+            } else if (difficulty.Equals("Medium"))
+            {
+                numCards = 6;
+            } else if(difficulty.Equals("Hard"))
+            {
+                numCards = 9;
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -59,7 +71,7 @@ namespace KinectColorApp
             Random rng = new Random();
             var randBackgrounds = backgrounds;
             //.OrderBy(a => rng.Next());
-            for (int i = 0; i < cards.Count(); i++)
+            for (int i = 0; i < cards.Count; i++)
             {
                 Button myButton = new Button
                 {

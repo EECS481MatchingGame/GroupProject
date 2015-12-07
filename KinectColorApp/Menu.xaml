@@ -4,46 +4,20 @@
         xmlns:WpfViewers="clr-namespace:Microsoft.Samples.Kinect.WpfViewers;assembly=Microsoft.Samples.Kinect.WpfViewers" x:Class="KinectColorApp.Menu"
         Title="Menu" Height="718.178" Width="910.892" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_Size_Did_Change" WindowStyle="None" WindowState="Maximized">
     <Canvas x:Name="menuCanvas">
-        <CheckBox
-             x:Name="easyCheck"
-	    Content="Easy"
-	    HorizontalAlignment="Left"
-	    VerticalAlignment="Top"
-	 Checked="CheckBox_Checked"
-	    Unchecked="CheckBox_Unchecked"
-            Canvas.Left="226" Canvas.Top="92" FontSize="21.333"/>
-        <CheckBox
-        	x:Name="mediumCheck"
-        	Content="Medium"
-        	HorizontalAlignment="Left"
-        	VerticalAlignment="Top"
-        Checked="CheckBox_Checked"
-	    Unchecked="CheckBox_Unchecked"
-            Canvas.Left="225" Canvas.Top="123" FontSize="21.333"/>
-        <CheckBox
-        	x:Name="hardCheck"
-        	Content="Hard"
-        	HorizontalAlignment="Left"
-        	VerticalAlignment="Top"
-       Checked="CheckBox_Checked"
-	    Unchecked="CheckBox_Unchecked"
-            Canvas.Left="226" Canvas.Top="152" FontSize="21.333"/>
-
+       
         <Button x:Name="startButton"  Click="startGame" Canvas.Left="226" Canvas.Top="360" Height="45" Width="250" FontSize="26.667">Start!</Button>
 
         <Button Content="Select a Difficulty"
-        Click="Theme_Click"
-        ContextMenuService.IsEnabled="False" Canvas.Left="225" Canvas.Top="202" Width="250" Height="45" FontSize="21.333">
+        Click="Difficulty_Click"
+        ContextMenuService.IsEnabled="False" Canvas.Left="225" Canvas.Top="202" Width="250" Height="45" FontSize="21.333" x:Name="difficultyMenu">
             <Button.ContextMenu>
-                <ContextMenu >
-                    <MenuItem Header="I think this"/>
-                    <MenuItem Header="Is a better way"/>
-                    <MenuItem Header="to select"/>
-                    <MenuItem Header="difficulty"/>
+                <ContextMenu>
+                   <MenuItem Header="Easy" Click="clickDifficulty"/>
+                    <MenuItem Header="Medium"  Click="clickDifficulty"/>
+                    <MenuItem Header="Hard"  Click="clickDifficulty"/>
                 </ContextMenu>
             </Button.ContextMenu>
         </Button>
-        <Label x:Name="label" Content="Select a Level" Canvas.Left="221" Canvas.Top="55" Height="37" Width="147" FontSize="21.333"/>
         <Button Content="Select a Theme"
         	Click="Theme_Click"
         	ContextMenuService.IsEnabled="False" Canvas.Left="226" Canvas.Top="281" Width="250" Height="45" FontSize="21.333">

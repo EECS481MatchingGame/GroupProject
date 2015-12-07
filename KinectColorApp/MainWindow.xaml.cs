@@ -115,7 +115,7 @@ namespace KinectColorApp
             string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\flags";       // flags look really good
             string[] fileEntries = Directory.GetFiles(dropBox);
             List<CardController> cards = cardController.initializeCards();
-            gameBoard = new GameBoard(0, "animals", fileEntries, cards);
+            gameBoard = new GameBoard("Hard", "animals", fileEntries, cards);
             
             kinectController.setGameBoard(gameBoard);
             calibrationLabel.Content = "Done!";
@@ -127,10 +127,11 @@ namespace KinectColorApp
 
             calibrationLabel.BeginAnimation(OpacityProperty, newAnimation, HandoffBehavior.SnapshotAndReplace);
 
-            Menu main = new Menu(gameBoard);
+            Menu main = new Menu();
+            main.setGameBoard(gameBoard);
             App.Current.MainWindow = main;
-            //this.Close();
             main.Show();
+            //this.Close();
 
         }
 
