@@ -109,7 +109,10 @@ namespace KinectColorApp
         private void calibrationCompleted()
         {
             // make menu the main window 
-            string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";
+            //string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";   // animals look good
+            //string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\cars";        // cars look good but need more color variance
+            //string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\colors";      // yellowgreen/green, blue/purple/ red/orange need variance
+            string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\flags";       // flags look really good
             string[] fileEntries = Directory.GetFiles(dropBox);
             List<CardController> cards = cardController.initializeCards();
             gameBoard = new GameBoard(0, "animals", fileEntries, cards);

@@ -10,3 +10,5 @@ KinectColorApp/obj/
 *.exe
 *.manifest
 *.application
+*.cache
+*.cache
