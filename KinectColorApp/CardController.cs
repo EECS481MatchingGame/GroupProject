@@ -19,8 +19,15 @@ namespace KinectColorApp
         private static int boardWidth = 640;
         private static int boardHeight = 480;
 
-        public static int width = 50;
-        public static int height = 72;
+        //public static int width = 50;
+        //public static int height = 72;
+
+        // From the way we scale the cards with 1.3x padding, 170 is max for height, and 92 is max for width (with 20px on each side)
+
+
+        public static int width = 85;
+        public static int height = 165;
+
 
         // variables contained in card - we can add more!  Such as an image file, bool showOnBoard, etc
         public bool isPressed;
@@ -92,9 +99,19 @@ namespace KinectColorApp
                 for (int j = 0; j < 6; j++)
                 {
                     int setIndex = (i * 6) + j; // gives each card a unique identifier
-                    // We have an issue here where the largest x is 570 and the largest y is 308
+                    // We have an issue here where the largest x is 520 and the largest y is 308
                     // we want the largest x to be 640 and the largest y to be 480
-                    cards.Add(new CardController(true, false, 20 + i * 2 * height, 20 + j * 2 * width, setIndex));
+                    int cardHeight = i * height;    // 170 is max for height
+                    int cardWidth = j * width;      // 92 is max for width
+                    // cast to an int but space the cards 30% of their height/width apart
+                    double tempHeight = cardHeight * 1.3;
+                    double tempWidth = cardWidth * 1.3;
+                    cardHeight = (int)tempHeight;
+                    cardWidth = (int)tempWidth;
+                    // Add the padding of 20 px to keep it off the edges of the screen
+                    cardHeight += 20;
+                    cardWidth += 20;
+                    cards.Add(new CardController(true, false, cardHeight, cardWidth, setIndex));
                 }
             }
             return cards;
@@ -112,7 +129,6 @@ namespace KinectColorApp
                 top left from the user's perspective is 640, 450
             */
 
-            // TODO - does cards.Count() only look at cards that are still on the board?  does it even matter?
 
             // This logic assumes that the bottom left of the screen is x=0,y=0, top right x=640, y=480
             for (int i = 0; i < cards.Count(); i++)
@@ -120,6 +136,9 @@ namespace KinectColorApp
                 // if x < rightXcoord && x > leftxcoord && y < topYcord && y > bottomYcoord
                 //Console.WriteLine("Given x= " + x + ", should be less than " + cards[i].rightXcoordinate + " and greater than " + cards[i].leftXcoordinate);
                 //Console.WriteLine("Given y= " + y + ", should be greater than " + cards[i].topYcoordinate + " and less than " + cards[i].bottomYcoordinate);
+
+                // TODO - make some sort of padding here to be more generous
+
                 if (x < cards[i].rightXcoordinate && x > cards[i].leftXcoordinate && y > cards[i].topYcoordinate && y < cards[i].bottomYcoordinate)
                 {
                     //card is pressed is set to true
