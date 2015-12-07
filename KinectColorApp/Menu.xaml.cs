@@ -63,6 +63,7 @@ namespace KinectColorApp
             string[] fileEntries = Directory.GetFiles(themeDirectory);
             List<CardController> cards = new CardController().initializeCards();
             GameBoard gameBoard = new GameBoard("Hard", theme, fileEntries, cards);
+            kinectController.setGameBoard(gameBoard);
             App.Current.MainWindow = gameBoard;
             gameBoard.Show();
             this.Close();
