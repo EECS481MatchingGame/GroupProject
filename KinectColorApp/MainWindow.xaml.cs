@@ -21,7 +21,7 @@ using System.Windows.Media.Effects;
 
 namespace KinectColorApp
 {
-    enum Colors { Red, Green, Blue, White };
+    public enum Colors { Red, Green, Blue, White };
 
     public partial class MainWindow : Window
     {
@@ -49,15 +49,6 @@ namespace KinectColorApp
             drawController = new DrawController(drawingCanvas, backgroundImage, colorRect, image1, buttons);
             soundController = new SoundController();
             cardController = new CardController();
-
-            string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";
-
-            string[] fileEntries = Directory.GetFiles(dropBox);
-
-            string[] files = fileEntries;
-            int array1OriginalLength = fileEntries.Length;
-            Array.Resize<string>(ref fileEntries, array1OriginalLength + files.Length);
-            Array.Copy(files, 0, fileEntries, array1OriginalLength, files.Length);
             kinectController = new KinectController(drawController, image1, soundController, buttons);
         }
 
@@ -108,16 +99,6 @@ namespace KinectColorApp
         
         private void calibrationCompleted()
         {
-            // make menu the main window 
-            //string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";   // animals look good
-            //string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\cars";        // cars look good but need more color variance
-            //string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\colors";      // yellowgreen/green, blue/purple/ red/orange need variance
-            string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\flags";       // flags look really good
-            string[] fileEntries = Directory.GetFiles(dropBox);
-            List<CardController> cards = cardController.initializeCards();
-            gameBoard = new GameBoard(0, "animals", fileEntries, cards);
-            
-            kinectController.setGameBoard(gameBoard);
             calibrationLabel.Content = "Done!";
             DoubleAnimation newAnimation = new DoubleAnimation();
             newAnimation.From = calibrationLabel.Opacity;
@@ -127,7 +108,9 @@ namespace KinectColorApp
 
             calibrationLabel.BeginAnimation(OpacityProperty, newAnimation, HandoffBehavior.SnapshotAndReplace);
 
-            Menu main = new Menu(gameBoard);
+            // make menu the main window
+            Menu main = new Menu();
+            main.setKinectController(kinectController);
             App.Current.MainWindow = main;
             //this.Close();
             main.Show();

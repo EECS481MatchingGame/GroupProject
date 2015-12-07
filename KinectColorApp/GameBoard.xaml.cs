@@ -22,7 +22,6 @@ namespace KinectColorApp
     public partial class GameBoard : Window
     {
         private int difficulty;
-        private string theme;
 
         private List<CardController> cards;
         private string[] backgrounds;
@@ -35,7 +34,6 @@ namespace KinectColorApp
         {
             InitializeComponent();
             difficulty = d;
-            theme = t;
             backgrounds = b;
             cards = c;
             selected = new HashSet<int>();
