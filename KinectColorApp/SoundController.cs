@@ -6,7 +6,7 @@ using System.Windows.Controls;
 using System.Media;
 
 namespace KinectColorApp {
-    class SoundController
+    public class SoundController
     {
 
         // File paths for sounds

@@ -36,7 +36,6 @@ namespace KinectColorApp
         {
             InitializeComponent();
             difficulty = d;
-            theme = t;
             backgrounds = b;
             cards = c;
             selected = new HashSet<int>();

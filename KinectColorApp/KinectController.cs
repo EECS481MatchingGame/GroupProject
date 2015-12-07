@@ -13,7 +13,7 @@ using System.Windows.Media.Effects;
 
 namespace KinectColorApp
 {
-    class KinectController : CardController
+    public class KinectController : CardController
     {
         private Image debugImage;
         private DrawController drawController;
@@ -135,7 +135,7 @@ namespace KinectColorApp
                     //Console.WriteLine("DEFAULT: Touch registered at " + x + ", " + y + " at depth " + bestDepthIndex);
 
                     gotTouch = true;
-                    int matchedIndex = updatePressed(gameBoard.getCards(), x, y);
+                    int matchedIndex = gameBoard != null ? updatePressed(gameBoard.getCards(), x, y) : -1;
                     if (matchedIndex >= 0)
                     {
                         Console.WriteLine("A press has been found at " + matchedIndex);

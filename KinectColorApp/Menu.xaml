@@ -23,10 +23,10 @@
         	ContextMenuService.IsEnabled="False" Canvas.Left="226" Canvas.Top="281" Width="250" Height="45" FontSize="21.333">
             <Button.ContextMenu>
                 <ContextMenu >
-                    <MenuItem Header="Animals"/>
-                    <MenuItem Header="Countries"/>
-                    <MenuItem Header="Cars"/>
-                    <MenuItem Header="Colors"/>
+                    <MenuItem Header="Animals" Click="changeTheme"/>
+                    <MenuItem Header="Cars" Click="changeTheme"/>
+                    <MenuItem Header="Flags" Click="changeTheme"/>
+                    <MenuItem Header="Colors" Click="changeTheme"/>
                 </ContextMenu>
             </Button.ContextMenu>
         </Button>

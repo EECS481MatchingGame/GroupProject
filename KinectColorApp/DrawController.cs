@@ -14,7 +14,7 @@ using System.Windows;
 
 namespace KinectColorApp
 {
-    class DrawController
+    public class DrawController
     {
         private Colors color = Colors.Red;
         private double ColorChangeSpeed = 60.0; // How fast does the color change with depth? smaller number changes faster.
@@ -234,7 +234,7 @@ namespace KinectColorApp
 		}
     }
 
-	class Background
+	public class Background
 	{
 		public Uri uri;
 		public Background(string inUriString)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.IO;
 
 namespace KinectColorApp
 {
@@ -16,6 +17,8 @@ namespace KinectColorApp
         private String difficulty = "Hard"; 
         private String theme = "animals";
         private GameBoard gameBoard; 
+        private KinectController kinectController;
+
         public Menu()
         {
             InitializeComponent();
@@ -31,6 +34,12 @@ namespace KinectColorApp
          //   gameBoard = g; 
          
         }
+
+        public void setKinectController(KinectController kC)
+        {
+            kinectController = kC;
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
@@ -46,9 +55,17 @@ namespace KinectColorApp
 
         public void startGame(object sender, RoutedEventArgs e)
         {
+            // animals - look good
+            // cars - look good but need more color variance
+            // colors - yellowgreen/green, blue/purple/ red/orange need variance
+            // flags - look really good
+            string themeDirectory = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\" + theme.ToLower();
+            string[] fileEntries = Directory.GetFiles(themeDirectory);
+            List<CardController> cards = new CardController().initializeCards();
+            GameBoard gameBoard = new GameBoard("Hard", theme, fileEntries, cards);
             App.Current.MainWindow = gameBoard;
-            this.Close();
             gameBoard.Show();
+            this.Close();
         }
       
         private void Theme_Click(object sender, RoutedEventArgs e)
@@ -59,6 +76,17 @@ namespace KinectColorApp
             (sender as Button).ContextMenu.IsOpen = true;
         }
         private void Difficulty_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void changeTheme(object sender, RoutedEventArgs e)
+        {
+            theme = (sender as MenuItem).Header.ToString();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             (sender as Button).ContextMenu.IsEnabled = true;
             (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
