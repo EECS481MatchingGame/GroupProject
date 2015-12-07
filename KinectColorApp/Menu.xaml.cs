@@ -22,11 +22,7 @@ namespace KinectColorApp
         public Menu()
         {
             InitializeComponent();
-            string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\flags";       // flags look really good
-            string[] fileEntries = Directory.GetFiles(dropBox);
-            List<CardController> cards = new List<CardController>(18);
-            gameBoard = gameBoard = new GameBoard(difficulty, "animals", fileEntries, cards);
-
+         
         }
 
         public void setGameBoard(GameBoard g)
@@ -61,8 +57,11 @@ namespace KinectColorApp
             // flags - look really good
             string themeDirectory = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\" + theme.ToLower();
             string[] fileEntries = Directory.GetFiles(themeDirectory);
-            List<CardController> cards = new CardController().initializeCards();
-            GameBoard gameBoard = new GameBoard("Hard", theme, fileEntries, cards);
+            CardController c = new CardController();
+            c.setNumCards(difficulty);
+            List<CardController> cards = c.initializeCards(); 
+            gameBoard = new GameBoard(difficulty, theme, fileEntries, cards);
+
             kinectController.setGameBoard(gameBoard);
             App.Current.MainWindow = gameBoard;
             gameBoard.Show();
@@ -78,6 +77,10 @@ namespace KinectColorApp
         }
         private void Difficulty_Click(object sender, RoutedEventArgs e)
         {
+            (sender as Button).ContextMenu.IsEnabled = true;
+            (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
+            (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            (sender as Button).ContextMenu.IsOpen = true;
 
         }
 

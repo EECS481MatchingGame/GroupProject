@@ -27,6 +27,9 @@ namespace KinectColorApp
 
         public static int width = 85;
         public static int height = 165;
+        private int numCards = 18;
+        private int rows = 3;
+        private int cols = 6;
 
 
         // variables contained in card - we can add more!  Such as an image file, bool showOnBoard, etc
@@ -76,6 +79,24 @@ namespace KinectColorApp
         public void setBotY(int newBotY) { bottomYcoordinate = newBotY; }
         public void setLeftX(int newLeftX) { leftXcoordinate = newLeftX; }
         public void setRightX(int newRightX) { rightXcoordinate = newRightX; }
+        public void setNumCards(String num) {
+            if (num.Equals("Easy"))
+            {
+                rows = 2;
+                cols = 3;
+            }
+            else if (num.Equals("Medium"))
+            {
+                rows = 3;
+                cols = 3;
+            }
+            else if (num.Equals("Hard"))
+            {
+                rows = 3;
+                cols = 6;
+            }
+            //numCards = num;
+        }
 
         public void setButton(Button i)
         {
@@ -94,11 +115,11 @@ namespace KinectColorApp
         {
             List<CardController> cards = new List<CardController>();
             // Code x and y coordinates as a function of xResolution and yResolution
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < 6; j++)
+                for (int j = 0; j < cols; j++)
                 {
-                    int setIndex = (i * 6) + j; // gives each card a unique identifier
+                    int setIndex = (i * cols) + j; // gives each card a unique identifier
                     // We have an issue here where the largest x is 520 and the largest y is 308
                     // we want the largest x to be 640 and the largest y to be 480
                     int cardHeight = i * height;    // 170 is max for height
