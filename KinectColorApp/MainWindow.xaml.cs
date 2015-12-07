@@ -87,10 +87,9 @@ namespace KinectColorApp
                     this.sensor.Start();
                 }
             }
-           
 
             this.KeyDown += new KeyEventHandler(OnKeyDown);
-           this.MouseDown += new MouseButtonEventHandler(OnClick);
+            this.MouseDown += new MouseButtonEventHandler(OnClick);
             this.MouseDoubleClick += new MouseButtonEventHandler(OnDoubleClick);
             soundController.StartMusic();
             drawController.ChangeBackground();
@@ -100,29 +99,22 @@ namespace KinectColorApp
             {
                 ellipse.Visibility = Visibility.Hidden;
             }
-
-
         }
 
         private void Window_Size_Did_Change(object sender, RoutedEventArgs e)
         {
-
             Canvas.SetLeft(backgroundImage, 0);
         }
-
-      
+        
         private void calibrationCompleted()
         {
-            // make menu the main window
-            
+            // make menu the main window 
             string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";
             string[] fileEntries = Directory.GetFiles(dropBox);
             List<CardController> cards = cardController.initializeCards();
-
             gameBoard = new GameBoard(0, "animals", fileEntries, cards);
             
             kinectController.setGameBoard(gameBoard);
-
             calibrationLabel.Content = "Done!";
             DoubleAnimation newAnimation = new DoubleAnimation();
             newAnimation.From = calibrationLabel.Opacity;
@@ -141,7 +133,6 @@ namespace KinectColorApp
 
         private void OnClick(object sender, MouseButtonEventArgs e)
         {
-            
             if (!has_started_calibrating)
             {
                 Canvas.SetZIndex(image1, 0);
@@ -152,7 +143,6 @@ namespace KinectColorApp
                 has_started_calibrating = true;
                 image1.Source = null;
             }
-   
         }
 
         private void OnDoubleClick(object sender, MouseButtonEventArgs e)
@@ -233,7 +223,7 @@ namespace KinectColorApp
         {
             stopKinect(this.sensor);
         }
-
+        
         // need a runnable function to check whether game finished and display the restart UI
     }
 }

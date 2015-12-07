@@ -9,23 +9,21 @@ using System.Windows.Controls;
 
 namespace KinectColorApp
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+    // Interaction logic for App.xaml
     public partial class Menu : Window
     {
-        private int difficulty = 0;
+        private int difficulty = 0; // 0 is easy, 1 is middle, 2 is hard
         private String theme = "animals";
         private GameBoard gameBoard; 
         public Menu(GameBoard g)
         {
             gameBoard = g;
             InitializeComponent();
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
         }
         private void Window_Size_Did_Change(object sender, RoutedEventArgs e)
         {
@@ -33,9 +31,8 @@ namespace KinectColorApp
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-        }
 
-      
+        }
 
         public void startGame(object sender, RoutedEventArgs e)
         {
@@ -62,7 +59,6 @@ namespace KinectColorApp
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
         }
-
 
     }
 }

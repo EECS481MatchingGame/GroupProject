@@ -11,7 +11,7 @@
 	    VerticalAlignment="Top"
 	 Checked="CheckBox_Checked"
 	    Unchecked="CheckBox_Unchecked"
-            Canvas.Left="226" Canvas.Top="92"/>
+            Canvas.Left="226" Canvas.Top="92" FontSize="21.333"/>
         <CheckBox
         	x:Name="mediumCheck"
         	Content="Medium"
@@ -19,7 +19,7 @@
         	VerticalAlignment="Top"
         Checked="CheckBox_Checked"
 	    Unchecked="CheckBox_Unchecked"
-            Canvas.Left="225" Canvas.Top="112"/>
+            Canvas.Left="225" Canvas.Top="123" FontSize="21.333"/>
         <CheckBox
         	x:Name="hardCheck"
         	Content="Hard"
@@ -27,13 +27,26 @@
         	VerticalAlignment="Top"
        Checked="CheckBox_Checked"
 	    Unchecked="CheckBox_Unchecked"
-            Canvas.Left="224" Canvas.Top="132"/>
+            Canvas.Left="226" Canvas.Top="152" FontSize="21.333"/>
 
-        <Button x:Name="startButton"  Click="startGame" Canvas.Left="221" Canvas.Top="279" Height="114" Width="361">Start!</Button>
+        <Button x:Name="startButton"  Click="startGame" Canvas.Left="226" Canvas.Top="360" Height="45" Width="250" FontSize="26.667">Start!</Button>
 
         <Button Content="Select a Theme"
         Click="Theme_Click"
-        ContextMenuService.IsEnabled="False" Canvas.Left="390" Canvas.Top="108">
+        ContextMenuService.IsEnabled="False" Canvas.Left="225" Canvas.Top="202" Width="250" Height="45" FontSize="21.333">
+            <Button.ContextMenu>
+                <ContextMenu >
+                    <MenuItem Header="Animals"/>
+                    <MenuItem Header="Numbers"/>
+                    <MenuItem Header="Cars"/>
+                    <MenuItem Header="Candy"/>
+                </ContextMenu>
+            </Button.ContextMenu>
+        </Button>
+        <Label x:Name="label" Content="Select a Level" Canvas.Left="221" Canvas.Top="55" Height="37" Width="147" FontSize="21.333"/>
+        <Button Content="Select a Backgroud"
+        	Click="Theme_Click"
+        	ContextMenuService.IsEnabled="False" Canvas.Left="226" Canvas.Top="281" Width="250" Height="45" FontSize="21.333">
             <Button.ContextMenu>
                 <ContextMenu >
                     <MenuItem Header="Animals"/>
