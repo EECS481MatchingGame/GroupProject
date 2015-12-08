@@ -40,7 +40,7 @@ namespace KinectColorApp
             cards = c;
             selected = new HashSet<int>();
             matched = new HashSet<int>();
-            setCardBackgrounds();
+        
 
             if (difficulty.Equals("Easy"))
             {
@@ -52,6 +52,7 @@ namespace KinectColorApp
             {
                 numCards = 9;
             }
+            setCardBackgrounds();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -70,7 +71,7 @@ namespace KinectColorApp
             Random rng = new Random();
             var randBackgrounds = backgrounds;
             //.OrderBy(a => rng.Next());
-            for (int i = 0; i < cards.Count; i++)
+            for (int i = 0; i < numCards * 2; i++)
             {
                 Button myButton = new Button
                 {
