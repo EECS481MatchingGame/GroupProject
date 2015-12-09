@@ -1,0 +1,15 @@
+﻿<Window
+      x:Class="KinectColorApp.Restart"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Restart"
+      xmlns:WpfViewers="clr-namespace:Microsoft.Samples.Kinect.WpfViewers;assembly=Microsoft.Samples.Kinect.WpfViewers"
+      Height="718.178" Width="910.892" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_Size_Did_Change" 
+      WindowStyle="None" WindowState="Maximized">
+
+    <Canvas x:Name="RestartCanvas">
+        <Image x:Name="WinImg" Canvas.Left="182" Height="500" Width="500" Source="Resources/winning.png"/>
+        <Button x:Name="button" Content="Restart" Canvas.Left="260" Canvas.Top="552" Width="100" Height="40"/>
+        <Button x:Name="button_Copy" Content="Menu" Canvas.Left="519" Canvas.Top="552" Width="100" Height="40"/>
+    </Canvas>
+</Window>

@@ -7,7 +7,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.IO;
 
 namespace KinectColorApp
 {
@@ -22,13 +21,11 @@ namespace KinectColorApp
         public Menu()
         {
             InitializeComponent();
-         
-        }
+        }         
 
         public void setGameBoard(GameBoard g)
         {
          //   gameBoard = g; 
-         
         }
 
         public void setKinectController(KinectController kC)
@@ -75,6 +72,7 @@ namespace KinectColorApp
             (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             (sender as Button).ContextMenu.IsOpen = true;
         }
+
         private void Difficulty_Click(object sender, RoutedEventArgs e)
         {
             (sender as Button).ContextMenu.IsEnabled = true;
@@ -83,7 +81,6 @@ namespace KinectColorApp
             (sender as Button).ContextMenu.IsOpen = true;
 
         }
-
 
         private void changeTheme(object sender, RoutedEventArgs e)
         {
@@ -96,7 +93,7 @@ namespace KinectColorApp
             (sender as Button).ContextMenu.PlacementTarget = (sender as Button);
             (sender as Button).ContextMenu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
             (sender as Button).ContextMenu.IsOpen = true;
-            // HeaderMenu obj = new HeaderMenu(sender);
+            //HeaderMenu obj = new HeaderMenu(sender);
         }
 
         public void clickDifficulty(object sender, EventArgs e)
@@ -105,12 +102,6 @@ namespace KinectColorApp
             Console.WriteLine(item.Header);
             difficulty = (String)item.Header;
             difficultyMenu.Content = difficulty; 
-
         }
-
-     
-     
-
-
     }
 }
