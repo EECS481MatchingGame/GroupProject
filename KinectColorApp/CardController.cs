@@ -79,23 +79,24 @@ namespace KinectColorApp
         public void setBotY(int newBotY) { bottomYcoordinate = newBotY; }
         public void setLeftX(int newLeftX) { leftXcoordinate = newLeftX; }
         public void setRightX(int newRightX) { rightXcoordinate = newRightX; }
-        public void setNumCards(String num) {
+        public void setNumCards(String num)
+        {
             if (num.Equals("Easy"))
             {
-                rows = 2;
-                cols = 3;
+                rows = 3;
+                cols = 2;
             }
             else if (num.Equals("Medium"))
             {
                 rows = 3;
-                cols = 3;
+                cols = 4;
             }
             else if (num.Equals("Hard"))
             {
                 rows = 3;
                 cols = 6;
             }
-            //numCards = num;
+            numCards = rows * cols;
         }
 
         public void setButton(Button i)
@@ -124,9 +125,18 @@ namespace KinectColorApp
                     // we want the largest x to be 640 and the largest y to be 480
                     int cardHeight = i * height;    // 170 is max for height
                     int cardWidth = j * width;      // 92 is max for width
-                    // cast to an int but space the cards 30% of their height/width apart
+                                                    // cast to an int but space the cards 30% of their height/width apart
+                    double multiplier = 1.3;
+                    if (numCards == 12)
+                    {
+                        multiplier = 2;
+                    }
+                    if (numCards == 6)
+                    {
+                        multiplier = 3;
+                    }
                     double tempHeight = cardHeight * 1.3;
-                    double tempWidth = cardWidth * 1.3;
+                    double tempWidth = cardWidth * multiplier;
                     cardHeight = (int)tempHeight;
                     cardWidth = (int)tempWidth;
                     // Add the padding of 20 px to keep it off the edges of the screen
