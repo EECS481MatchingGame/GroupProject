@@ -66,10 +66,28 @@ namespace KinectColorApp
 
         }
         
+        private void swapBackgrounds(string[] array, int a, int b)
+        {
+            string temp = array[a];
+            array[a] = array[b];
+            array[b] = temp;
+        }
+
+
         public void setCardBackgrounds()
         {
+            // TODO - If this only randomized the first 9 cards (and then the second 9 are in the same order as the first 9):
+            // first duplicate the string of backgrounds, so it's twice as long.  then remove the loop below that has it run
+            // twice, and only run it once.  This will be able to randomize all 18 cards then.
+
             Random rng = new Random();
-            var randBackgrounds = backgrounds;
+            // shuffling this array (maybe just swap two random numbers a few times) should work
+            string[] randBackgrounds = backgrounds;
+            int backgroundSize = randBackgrounds.Count();
+            // call the swap function a few times, should randomize the inputs
+            swapBackgrounds(randBackgrounds, 0, 2); // swaps elements 0 and 2
+            swapBackgrounds(randBackgrounds, 1, 2)
+
             //.OrderBy(a => rng.Next());
             for (int i = 0; i < numCards * 2; i++)
             {
