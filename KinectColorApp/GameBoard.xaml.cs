@@ -184,6 +184,13 @@ namespace KinectColorApp
                     }
                 }
                 selected.Clear();
+                if (matched.Count() == numCards)
+                {
+                    Restart restartMenu = new Restart();
+                    App.Current.MainWindow = restartMenu;
+                    restartMenu.Show();
+                    this.Close();
+                }
             }
         }
 
