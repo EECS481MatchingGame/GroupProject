@@ -197,6 +197,7 @@
     <Resource Include="Resources\8_code.png" />
     <Content Include="Resources\blue_SFX.wav" />
     <Content Include="Resources\change_background_SFX.wav" />
+    <Resource Include="Resources\congratulations.png" />
     <Content Include="Resources\eraser_SFX.wav" />
     <Content Include="Resources\green_SFX.wav" />
     <Resource Include="Resources\plus.jpg" />

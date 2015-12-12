@@ -11,8 +11,8 @@
         <Canvas.Background>
             <ImageBrush x:Name="backgroundImage"/>
         </Canvas.Background>
-        <Image x:Name="WinImg" Canvas.Left="105" HorizontalAlignment="Center" Height="700" Width="700" Source="Resources/congratulations.png"/>
-        <Button x:Name="restartButton" HorizontalAlignment="Center" Content="Restart" Canvas.Left="254" Canvas.Top="552" Width="100" Height="40" Click="restartGame"/>
-        <Button x:Name="menuButton" HorizontalAlignment="Center" Content="Menu" Canvas.Left="549" Canvas.Top="552" Width="100" Height="40" Click="returnToMenu"/>
+        <Image x:Name="WinImg" Canvas.Left="51" HorizontalAlignment="Center" Height="700" Width="700" Source="Resources/congratulations.png" Canvas.Top="-65"/>
+        <Button x:Name="restartButton" HorizontalAlignment="Center" Content="Restart" Canvas.Left="200" Canvas.Top="487" Width="100" Height="40" Click="restartGame"/>
+        <Button x:Name="menuButton" HorizontalAlignment="Center" Content="Menu" Canvas.Left="495" Canvas.Top="487" Width="100" Height="40" Click="returnToMenu"/>
     </Canvas>
 </Window>

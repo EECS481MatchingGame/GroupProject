@@ -9,14 +9,14 @@
             <ImageBrush x:Name="backgroundImage"/>
         </Canvas.Background>
 
-        <TextBlock  Canvas.Left="206" Canvas.Top="89" HorizontalAlignment="Center" FontSize="32">Welcome to the Matching Game!</TextBlock>
-        <TextBlock  Canvas.Left="226" Canvas.Top="137" HorizontalAlignment="Center" FontSize="24">Match the cards and get the high score!</TextBlock>
+        <TextBlock  Canvas.Left="179" Canvas.Top="95" HorizontalAlignment="Center" FontSize="32">Welcome to the Matching Game!</TextBlock>
+        <TextBlock  Canvas.Left="199" Canvas.Top="143" HorizontalAlignment="Center" FontSize="24">Match the cards and get the high score!</TextBlock>
 
-        <Button x:Name="startButton" HorizontalAlignment="Center" Click="startGame" Canvas.Left="307" Canvas.Top="481" Height="45" Width="250" FontSize="26.667">Start!</Button>
+        <Button x:Name="startButton" HorizontalAlignment="Center" Click="startGame" Canvas.Left="280" Canvas.Top="487" Height="45" Width="250" FontSize="26.667">Start!</Button>
         <Button Content="Select a Difficulty"
             Click="Difficulty_Click"
                 HorizontalAlignment="Center"
-            ContextMenuService.IsEnabled="False" Canvas.Left="307" Canvas.Top="231" Width="250" Height="45" FontSize="21.333" x:Name="difficultyMenu">
+            ContextMenuService.IsEnabled="False" Canvas.Left="280" Canvas.Top="237" Width="250" Height="45" FontSize="21.333" x:Name="difficultyMenu">
             <Button.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Easy" Click="clickDifficulty"/>
@@ -28,7 +28,7 @@
         <Button Content="Select a Theme"
         	             HorizontalAlignment="Center"
                 Click="Theme_Click"
-        	    ContextMenuService.IsEnabled="False" Canvas.Left="307" Canvas.Top="360" Width="250" Height="45" FontSize="21.333" x:Name="themeMenu">
+        	    ContextMenuService.IsEnabled="False" Canvas.Left="280" Canvas.Top="366" Width="250" Height="45" FontSize="21.333" x:Name="themeMenu">
             <Button.ContextMenu>
                 <ContextMenu >
                     <MenuItem Header="Animals" Click="changeTheme"/>
