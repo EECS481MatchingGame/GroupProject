@@ -31,6 +31,7 @@ namespace KinectColorApp
         private HashSet<int> matched;
 
         private Menu menu;
+        private int scoreNum = 0;
 
 
         public GameBoard(string d, string t, string[] b, List<CardController> c, Menu previousMenu)
@@ -252,6 +253,14 @@ namespace KinectColorApp
                         gameCanvas.Children.Add(cards.ElementAt(i).getButton());
                     }
                 }
+                if (isMatching)
+                {
+                    scoreNum += 10;
+                } else
+                {
+                    scoreNum -= 5;
+                }
+                score.Text = scoreNum.ToString();
                 selected.Clear();
                 if (allCardsMatched())
                 {

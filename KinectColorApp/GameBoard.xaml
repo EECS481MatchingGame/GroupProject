@@ -7,7 +7,8 @@
         <Canvas.Background>
             <ImageBrush x:Name="backgroundImage"/>
         </Canvas.Background>
-
+        <TextBlock FontSize="26" Canvas.Left="10" Canvas.Top="10" Background="Transparent">Score</TextBlock>
+        <TextBlock x:Name="score" FontSize="26" Canvas.Left="25" Background="Transparent" Canvas.Top="50">100</TextBlock>
     </Canvas>
 
 </Window>
