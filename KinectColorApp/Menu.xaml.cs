@@ -85,6 +85,7 @@ namespace KinectColorApp
         private void changeTheme(object sender, RoutedEventArgs e)
         {
             theme = (sender as MenuItem).Header.ToString();
+            themeMenu.Content = theme;
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)

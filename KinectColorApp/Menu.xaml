@@ -18,9 +18,9 @@
                     </ContextMenu>
                 </Button.ContextMenu>
             </Button>
-            <Button Content="Select a Theme"
+            <Button Content="Animals"
         	    Click="Theme_Click"
-        	    ContextMenuService.IsEnabled="False" Canvas.Left="226" Canvas.Top="281" Width="250" Height="45" FontSize="21.333">
+        	    ContextMenuService.IsEnabled="False" Canvas.Left="226" Canvas.Top="281" Width="250" Height="45" FontSize="21.333" x:Name="themeMenu">
             <Button.ContextMenu>
                 <ContextMenu >
                     <MenuItem Header="Animals" Click="changeTheme"/>
