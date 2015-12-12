@@ -111,6 +111,7 @@ namespace KinectColorApp
                 };
                 myButton.Background = Brushes.White;
                 myButton.BorderBrush = Brushes.Black;
+                myButton.IsHitTestVisible = false;
 
                 DropShadowBitmapEffect myDropShadowEffect = new DropShadowBitmapEffect();
                 // Set the color of the shadow to Black.

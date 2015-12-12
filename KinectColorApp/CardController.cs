@@ -190,8 +190,6 @@ namespace KinectColorApp
             Console.WriteLine("Checking to see if a match between " + ((Image)button.Content).Source.ToString() + " and " + ((Image)other.button.Content).Source.ToString());
             if (((Image)button.Content).Source.ToString().Equals(((Image)other.button.Content).Source.ToString()))
                 return true;
-            //if (((Image)button.Content).Source.ToString() == ((Image)other.button.Content).Source.ToString())
-            //    return true;
 
             return false;
         }
