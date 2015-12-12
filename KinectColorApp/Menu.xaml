@@ -8,13 +8,14 @@
         <Canvas.Background>
             <ImageBrush x:Name="backgroundImage"/>
         </Canvas.Background>
-        
-        <TextBox Canvas.Left="242" Canvas.Top="67" FontSize="32">Welcome to the Matching Game!</TextBox>
 
-        <Button x:Name="startButton"  Click="startGame" Canvas.Left="307" Canvas.Top="481" Height="45" Width="250" FontSize="26.667">Start!</Button>
+        <TextBlock  Canvas.Left="206" Canvas.Top="89" HorizontalAlignment="Center" FontSize="32">Welcome to the Matching Game!</TextBlock>
+
+        <Button x:Name="startButton" HorizontalAlignment="Center" Click="startGame" Canvas.Left="307" Canvas.Top="481" Height="45" Width="250" FontSize="26.667">Start!</Button>
         <Button Content="Select a Difficulty"
             Click="Difficulty_Click"
-            ContextMenuService.IsEnabled="False" Canvas.Left="307" Canvas.Top="234" Width="250" Height="45" FontSize="21.333" x:Name="difficultyMenu">
+                HorizontalAlignment="Center"
+            ContextMenuService.IsEnabled="False" Canvas.Left="307" Canvas.Top="231" Width="250" Height="45" FontSize="21.333" x:Name="difficultyMenu">
             <Button.ContextMenu>
                 <ContextMenu>
                     <MenuItem Header="Easy" Click="clickDifficulty"/>
@@ -24,7 +25,8 @@
             </Button.ContextMenu>
         </Button>
         <Button Content="Select a Theme"
-        	    Click="Theme_Click"
+        	             HorizontalAlignment="Center"
+                Click="Theme_Click"
         	    ContextMenuService.IsEnabled="False" Canvas.Left="307" Canvas.Top="360" Width="250" Height="45" FontSize="21.333" x:Name="themeMenu">
             <Button.ContextMenu>
                 <ContextMenu >
