@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Media.Imaging;
 
 namespace KinectColorApp
 {
@@ -23,6 +24,9 @@ namespace KinectColorApp
         {
             InitializeComponent();
             menu = menuToReturnTo;
+            Image image = new Image();
+            image.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + @"\..\..\Resources\retina_wood_@2X.png", UriKind.Absolute));
+            backgroundImage.ImageSource = image.Source;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

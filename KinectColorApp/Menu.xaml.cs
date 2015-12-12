@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace KinectColorApp
 {
@@ -21,6 +22,10 @@ namespace KinectColorApp
         public Menu()
         {
             InitializeComponent();
+
+            Image image = new Image();
+            image.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + @"\..\..\Resources\retina_wood_@2X.png", UriKind.Absolute));
+            backgroundImage.ImageSource = image.Source;
         }         
 
         public void setGameBoard(GameBoard g)
