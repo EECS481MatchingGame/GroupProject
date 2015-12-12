@@ -243,7 +243,7 @@ namespace KinectColorApp
                 selected.Clear();
                 if (allCardsMatched())
                 {
-                    Restart restartMenu = new Restart(menu);
+                    Restart restartMenu = new Restart(menu, scoreNum);
                     App.Current.MainWindow = restartMenu;
                     restartMenu.Show();
                     this.Close();

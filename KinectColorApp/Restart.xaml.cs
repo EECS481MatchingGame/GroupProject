@@ -21,13 +21,14 @@ namespace KinectColorApp
     {
         private Menu menu;
 
-        public Restart(Menu menuToReturnTo)
+        public Restart(Menu menuToReturnTo, int s)
         {
             InitializeComponent();
             menu = menuToReturnTo;
             Image image = new Image();
             image.Source = new BitmapImage(new Uri(Directory.GetCurrentDirectory() + @"\..\..\Resources\retina_wood_@2X.png", UriKind.Absolute));
             backgroundImage.ImageSource = image.Source;
+            Score.Text = s.ToString(); 
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
