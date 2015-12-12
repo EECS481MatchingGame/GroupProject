@@ -99,18 +99,6 @@ namespace KinectColorApp
         
         private void calibrationCompleted()
         {
-
-            // make menu the main window 
-            //string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\animals";   // animals look good
-            //string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\cars";        // cars look good but need more color variance
-            //string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\colors";      // yellowgreen/green, blue/purple/ red/orange need variance
-            string dropBox = Directory.GetCurrentDirectory() + @"\..\..\Resources\sprites\flags";       // flags look good
-            string[] fileEntries = Directory.GetFiles(dropBox);
-            List<CardController> cards = cardController.initializeCards();
-            gameBoard = new GameBoard("Hard", "animals", fileEntries, cards);
-            
-            kinectController.setGameBoard(gameBoard);
-
             calibrationLabel.Content = "Done!";
             DoubleAnimation newAnimation = new DoubleAnimation();
             newAnimation.From = calibrationLabel.Opacity;
@@ -125,8 +113,6 @@ namespace KinectColorApp
             main.setKinectController(kinectController);
             App.Current.MainWindow = main;
             main.Show();
-            //this.Close();
-
         }
 
         private void OnClick(object sender, MouseButtonEventArgs e)

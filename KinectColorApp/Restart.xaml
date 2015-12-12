@@ -9,7 +9,7 @@
 
     <Canvas x:Name="RestartCanvas">
         <Image x:Name="WinImg" Canvas.Left="182" Height="500" Width="500" Source="Resources/winning.png"/>
-        <Button x:Name="button" Content="Restart" Canvas.Left="260" Canvas.Top="552" Width="100" Height="40"/>
-        <Button x:Name="button_Copy" Content="Menu" Canvas.Left="519" Canvas.Top="552" Width="100" Height="40"/>
+        <Button x:Name="restartButton" Content="Restart" Canvas.Left="260" Canvas.Top="552" Width="100" Height="40" Click="restartGame"/>
+        <Button x:Name="menuButton" Content="Menu" Canvas.Left="519" Canvas.Top="552" Width="100" Height="40" Click="returnToMenu"/>
     </Canvas>
 </Window>

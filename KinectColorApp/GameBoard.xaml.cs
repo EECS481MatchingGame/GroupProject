@@ -30,16 +30,22 @@ namespace KinectColorApp
         private HashSet<int> selected;
         private HashSet<int> matched;
 
+        private Menu menu;
 
 
-        public GameBoard(string d, string t, string[] b, List<CardController> c)
+        public GameBoard(string d, string t, string[] b, List<CardController> c, Menu previousMenu)
         {
             InitializeComponent();
+            Image image = new Image(); 
+            image.Source = new BitmapImage( new Uri(Directory.GetCurrentDirectory() + @"\..\..\Resources\retina_wood_@2X.png", UriKind.Absolute));
+            backgroundImage.ImageSource = image.Source;
             difficulty = d;
             backgrounds = b;
             cards = c;
             selected = new HashSet<int>();
             matched = new HashSet<int>();
+
+            menu = previousMenu;
 
 
             if (difficulty.Equals("Easy"))
@@ -208,15 +214,19 @@ namespace KinectColorApp
                     }
                 }
                 selected.Clear();
+                if (allCardsMatched())
+                {
+                    Restart restartMenu = new Restart(menu);
+                    App.Current.MainWindow = restartMenu;
+                    restartMenu.Show();
+                    this.Close();
+                }
             }
         }
 
-        public bool finishedARound() // pre requirement is cards.Count > 0
+        public bool allCardsMatched()
         {
-            if (cards.Count() == matched.Count())
-                return true;
-            else
-                return false;
+            return cards.Count() == matched.Count();
         }
     }
 
