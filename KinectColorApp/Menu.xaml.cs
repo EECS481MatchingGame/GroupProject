@@ -57,12 +57,11 @@ namespace KinectColorApp
             CardController c = new CardController();
             c.setNumCards(difficulty);
             List<CardController> cards = c.initializeCards(); 
-            gameBoard = new GameBoard(difficulty, theme, fileEntries, cards);
+            gameBoard = new GameBoard(difficulty, theme, fileEntries, cards, this);
 
             kinectController.setGameBoard(gameBoard);
             App.Current.MainWindow = gameBoard;
             gameBoard.Show();
-            this.Close();
         }
       
         private void Theme_Click(object sender, RoutedEventArgs e)

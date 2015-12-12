@@ -17,9 +17,12 @@ namespace KinectColorApp
 {
     public partial class Restart : Window
     {
-        public Restart()
+        private Menu menu;
+
+        public Restart(Menu menuToReturnTo)
         {
             InitializeComponent();
+            menu = menuToReturnTo;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -33,6 +36,19 @@ namespace KinectColorApp
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
+        }
+
+        private void restartGame(object sender, RoutedEventArgs e)
+        {
+            menu.startGame(null, null);
+            this.Close();
+        }
+
+        private void returnToMenu(object sender, RoutedEventArgs e)
+        {
+            App.Current.MainWindow = menu;
+            menu.Show();
+            this.Close();
         }
     }
 }

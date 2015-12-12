@@ -31,8 +31,9 @@ namespace KinectColorApp
         private HashSet<int> selected;
         private HashSet<int> matched;
 
+        private Menu menu;
 
-        public GameBoard(string d, string t, string[] b, List<CardController> c)
+        public GameBoard(string d, string t, string[] b, List<CardController> c, Menu previousMenu)
         {
             InitializeComponent();
             difficulty = d;
@@ -40,7 +41,8 @@ namespace KinectColorApp
             cards = c;
             selected = new HashSet<int>();
             matched = new HashSet<int>();
-        
+
+            menu = previousMenu;
 
             if (difficulty.Equals("Easy"))
             {
@@ -184,9 +186,9 @@ namespace KinectColorApp
                     }
                 }
                 selected.Clear();
-                if (matched.Count() == numCards)
+                if (allCardsMatched())
                 {
-                    Restart restartMenu = new Restart();
+                    Restart restartMenu = new Restart(menu);
                     App.Current.MainWindow = restartMenu;
                     restartMenu.Show();
                     this.Close();
@@ -194,12 +196,9 @@ namespace KinectColorApp
             }
         }
 
-        public bool finishedARound() // pre requirement is cards.Count > 0
+        public bool allCardsMatched()
         {
-            if (cards.Count() == matched.Count())
-                return true;
-            else
-                return false;
+            return cards.Count() == matched.Count();
         }
     }
 
