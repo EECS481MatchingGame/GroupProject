@@ -170,7 +170,7 @@ namespace KinectColorApp
 
                 // TODO - make some sort of padding here to be more generous
 
-                if (x < cards[i].rightXcoordinate && x > cards[i].leftXcoordinate && y > cards[i].topYcoordinate && y < cards[i].bottomYcoordinate)
+                if (x < (cards[i].rightXcoordinate + width ) && x > (cards[i].leftXcoordinate + width) && y > cards[i].topYcoordinate && y < cards[i].bottomYcoordinate)
                 {
                     //card is pressed is set to true
                     //cards[i].setPressed(true);
