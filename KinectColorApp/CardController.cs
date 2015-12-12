@@ -135,7 +135,7 @@ namespace KinectColorApp
                     {
                         multiplier = 3;
                     }
-                    double tempHeight = cardHeight * 1.3;
+                    double tempHeight = cardHeight * 1.2;
                     double tempWidth = cardWidth * multiplier;
                     cardHeight = (int)tempHeight;
                     cardWidth = (int)tempWidth;
