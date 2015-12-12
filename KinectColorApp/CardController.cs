@@ -83,8 +83,8 @@ namespace KinectColorApp
         {
             if (num.Equals("Easy"))
             {
-                rows = 3;
-                cols = 2;
+                rows = 2;
+                cols = 3;
             }
             else if (num.Equals("Medium"))
             {
@@ -133,7 +133,7 @@ namespace KinectColorApp
                     }
                     if (numCards == 6)
                     {
-                        multiplier = 3;
+                        multiplier = 4;
                     }
                     double tempHeight = cardHeight * 1.2;
                     double tempWidth = cardWidth * multiplier;
