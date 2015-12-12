@@ -182,27 +182,6 @@ namespace KinectColorApp
             }
         }
 
-        public void restartBoard(Canvas gameCanvas)
-        {
-            string path = Directory.GetCurrentDirectory();
-            Image winningImg = new Image
-            {
-                Source = new BitmapImage(new Uri(path))
-            };
-            Canvas.SetLeft(winningImg, 100);
-            Canvas.SetTop(winningImg, 10);
-            gameCanvas.Children.Add(winningImg);
-
-            Button quit = new Button { Content = "Quit" };
-            Button restart = new Button { Content = "Restart" };
-            Canvas.SetLeft(quit, 100);
-            Canvas.SetBottom(quit, 100);
-            Canvas.SetRight(restart, 100);
-            Canvas.SetBottom(restart, 100);
-            gameCanvas.Children.Add(quit);
-            gameCanvas.Children.Add(restart);
-        }
-
         public void flipCard(int index)
         {
 
