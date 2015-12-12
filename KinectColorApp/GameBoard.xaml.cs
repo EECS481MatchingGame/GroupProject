@@ -86,7 +86,7 @@ namespace KinectColorApp
             int backgroundSize = randBackgrounds.Count();
             // call the swap function a few times, should randomize the inputs
             swapBackgrounds(randBackgrounds, 0, 2); // swaps elements 0 and 2
-            swapBackgrounds(randBackgrounds, 1, 2)
+            swapBackgrounds(randBackgrounds, 1, 2);
 
             //.OrderBy(a => rng.Next());
             for (int i = 0; i < numCards * 2; i++)
