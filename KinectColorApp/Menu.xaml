@@ -10,7 +10,7 @@
         </Canvas.Background>
 
         <TextBlock  Canvas.Left="179" Canvas.Top="95" HorizontalAlignment="Center" FontSize="32">Welcome to the Matching Game!</TextBlock>
-        <TextBlock  Canvas.Left="199" Canvas.Top="143" HorizontalAlignment="Center" FontSize="24">Match the cards and get the high score!</TextBlock>
+        <TextBlock  Canvas.Left="211" Canvas.Top="143" HorizontalAlignment="Center" FontSize="24" Text="Match the cards and get a high score"/>
 
         <Button x:Name="startButton" HorizontalAlignment="Center" Click="startGame" Canvas.Left="280" Canvas.Top="487" Height="45" Width="250" FontSize="26.667">Start!</Button>
         <Button Content="Select a Difficulty"
