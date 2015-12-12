@@ -160,8 +160,8 @@ namespace KinectColorApp
                 myShadowColor.ScR = 0;
                 myDropShadowEffect.Color = myShadowColor;
 
-                // Set the direction of where the shadow is cast to 320 degrees.
-                myDropShadowEffect.Direction = 320;
+                // Set the direction of where the shadow is cast to degrees.
+                myDropShadowEffect.Direction = 350;
 
                 // Set the depth of the shadow being cast.
                 myDropShadowEffect.ShadowDepth = 15;
