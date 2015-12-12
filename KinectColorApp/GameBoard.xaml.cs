@@ -73,7 +73,7 @@ namespace KinectColorApp
         {
 
         }
-        
+
         private void swapBackgrounds(string[] array, int a, int b)
         {
             string temp = array[a];
@@ -90,13 +90,50 @@ namespace KinectColorApp
 
             Random rng = new Random();
             // shuffling this array (maybe just swap two random numbers a few times) should work
-            string[] randBackgrounds = backgrounds;
-            int backgroundSize = randBackgrounds.Count();
-            // call the swap function a few times, should randomize the inputs
-            swapBackgrounds(randBackgrounds, 0, 2); // swaps elements 0 and 2
-            swapBackgrounds(randBackgrounds, 1, 2);
+            //string[] randBackgrounds = backgrounds + backgrounds;
+            string[] randBackgrounds = new string[numCards * 2];
+            // make randBackgrounds an array of the filenames that will be on the board
+            for (int x = 0; x < numCards; x++)
+            {
+                randBackgrounds[x] = backgrounds[x];
+                randBackgrounds[x + numCards] = backgrounds[x];
+            }
 
-            //.OrderBy(a => rng.Next());
+            // if numCards == 18:
+            if (numCards == 9)
+            {
+                // can swap all: 0 - 17
+                for (int i = 0; i < 20; i++)
+                {
+                    int x = rng.Next(0, 18); // creates a number between 0 and 17
+                    int y = rng.Next(0, 18); // creates a number between 0 and 17
+                    swapBackgrounds(randBackgrounds, x, y);
+                }
+            }
+
+            // if numCards == 12:
+            if (numCards == 6)
+            {
+                // can swap  0 - 11
+                for (int i = 0; i < 20; i++)
+                {
+                    int x = rng.Next(0, 12); // creates a number between 0 and 11
+                    int y = rng.Next(0, 12); // creates a number between 0 and 11
+                    swapBackgrounds(randBackgrounds, x, y);
+                }
+            }
+            // if numCards == 6:
+            if (numCards == 3)
+            {
+                // can swap 0 - 5
+                for (int i = 0; i < 20; i++)
+                {
+                    int x = rng.Next(0, 6); // creates a number between 0 and 5
+                    int y = rng.Next(0, 6); // creates a number between 0 and 5
+                    swapBackgrounds(randBackgrounds, x, y);
+                }
+            }
+
             for (int i = 0; i < numCards * 2; i++)
             {
                 Button myButton = new Button
