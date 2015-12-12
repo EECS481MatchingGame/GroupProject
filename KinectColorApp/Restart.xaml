@@ -8,6 +8,9 @@
       WindowStyle="None" WindowState="Maximized">
 
     <Canvas x:Name="RestartCanvas">
+        <Canvas.Background>
+            <ImageBrush x:Name="backgroundImage"/>
+        </Canvas.Background>
         <Image x:Name="WinImg" Canvas.Left="105" Height="700" Width="700" Source="Resources/congratulations.png"/>
         <Button x:Name="restartButton" Content="Restart" Canvas.Left="254" Canvas.Top="552" Width="100" Height="40" Click="restartGame"/>
         <Button x:Name="menuButton" Content="Menu" Canvas.Left="549" Canvas.Top="552" Width="100" Height="40" Click="returnToMenu"/>
