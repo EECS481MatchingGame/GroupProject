@@ -105,6 +105,7 @@ namespace KinectColorApp
                 };
                 myButton.Background = Brushes.Transparent;
                 myButton.BorderBrush = Brushes.Black;
+                myButton.IsHitTestVisible = false;
 
                 Canvas.SetLeft(myButton, cards.ElementAt(i).rightXcoordinate);
                 Canvas.SetTop(myButton, cards.ElementAt(i).topYcoordinate);
