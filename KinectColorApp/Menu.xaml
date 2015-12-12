@@ -5,6 +5,7 @@
         x:Class="KinectColorApp.Menu"
         Title="Menu" Height="718.178" Width="910.892" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_Size_Did_Change" WindowStyle="None" WindowState="Maximized">
     <Canvas x:Name="menuCanvas">
+        <TextBox Canvas.Left="242" Canvas.Top="67" FontSize="32">Welcome to the Matching Game!</TextBox>
 
         <Button x:Name="startButton"  Click="startGame" Canvas.Left="307" Canvas.Top="481" Height="45" Width="250" FontSize="26.667">Start!</Button>
         <Button Content="Select a Difficulty"
