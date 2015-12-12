@@ -148,7 +148,7 @@ namespace KinectColorApp
                 };
                 myButton.Background = Brushes.White;
                 myButton.BorderBrush = Brushes.Black;
-                myButton.BorderThickness = 5;
+                myButton.BorderThickness = new Thickness(5);
                 myButton.IsHitTestVisible = false;
 
                 DropShadowBitmapEffect myDropShadowEffect = new DropShadowBitmapEffect();
@@ -164,13 +164,13 @@ namespace KinectColorApp
                 myDropShadowEffect.Direction = 320;
 
                 // Set the depth of the shadow being cast.
-                myDropShadowEffect.ShadowDepth = 25;
+                myDropShadowEffect.ShadowDepth = 15;
 
                 // Set the shadow softness to the maximum (range of 0-1).
-                myDropShadowEffect.Softness = 1;
+                myDropShadowEffect.Softness = .2;
                 // Set the shadow opacity to half opaque or in other words - half transparent.
                 // The range is 0-1.
-                myDropShadowEffect.Opacity = 0.5;
+                myDropShadowEffect.Opacity = 0.3;
                 myButton.BitmapEffect = myDropShadowEffect;
 
                 Canvas.SetLeft(myButton, cards.ElementAt(i).rightXcoordinate);
