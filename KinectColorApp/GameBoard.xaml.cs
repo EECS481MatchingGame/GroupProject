@@ -11,8 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Threading;
 using System.Windows;
-
-
+using System.Windows.Media.Effects;
 
 namespace KinectColorApp
 {
@@ -32,6 +31,7 @@ namespace KinectColorApp
         private HashSet<int> matched;
 
 
+
         public GameBoard(string d, string t, string[] b, List<CardController> c)
         {
             InitializeComponent();
@@ -40,15 +40,17 @@ namespace KinectColorApp
             cards = c;
             selected = new HashSet<int>();
             matched = new HashSet<int>();
-        
+
 
             if (difficulty.Equals("Easy"))
             {
                 numCards = 3;
-            } else if (difficulty.Equals("Medium"))
+            }
+            else if (difficulty.Equals("Medium"))
             {
                 numCards = 6;
-            } else if(difficulty.Equals("Hard"))
+            }
+            else if (difficulty.Equals("Hard"))
             {
                 numCards = 9;
             }
@@ -101,8 +103,30 @@ namespace KinectColorApp
                         VerticalAlignment = VerticalAlignment.Center
                     }
                 };
-                myButton.Background = Brushes.Transparent;
+                myButton.Background = Brushes.White;
                 myButton.BorderBrush = Brushes.Black;
+
+                DropShadowBitmapEffect myDropShadowEffect = new DropShadowBitmapEffect();
+                // Set the color of the shadow to Black.
+                Color myShadowColor = new Color();
+                myShadowColor.ScA = 1;
+                myShadowColor.ScB = 0;
+                myShadowColor.ScG = 0;
+                myShadowColor.ScR = 0;
+                myDropShadowEffect.Color = myShadowColor;
+
+                // Set the direction of where the shadow is cast to 320 degrees.
+                myDropShadowEffect.Direction = 320;
+
+                // Set the depth of the shadow being cast.
+                myDropShadowEffect.ShadowDepth = 25;
+
+                // Set the shadow softness to the maximum (range of 0-1).
+                myDropShadowEffect.Softness = 1;
+                // Set the shadow opacity to half opaque or in other words - half transparent.
+                // The range is 0-1.
+                myDropShadowEffect.Opacity = 0.5;
+                myButton.BitmapEffect = myDropShadowEffect;
 
                 Canvas.SetLeft(myButton, cards.ElementAt(i).rightXcoordinate);
                 Canvas.SetTop(myButton, cards.ElementAt(i).topYcoordinate);

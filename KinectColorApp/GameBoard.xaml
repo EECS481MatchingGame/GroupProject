@@ -4,7 +4,10 @@
         xmlns:WpfViewers="clr-namespace:Microsoft.Samples.Kinect.WpfViewers;assembly=Microsoft.Samples.Kinect.WpfViewers" x:Class="KinectColorApp.GameBoard"
         Title="GameBoard" Height="718.178" Width="910.892" Loaded="Window_Loaded" Closing="Window_Closing" SizeChanged="Window_Size_Did_Change" WindowStyle="None" WindowState="Maximized">
     <Canvas x:Name="gameCanvas">
-        
+        <Canvas.Background>
+            <ImageBrush x:Name="backgroundImage"/>
+        </Canvas.Background>
+
     </Canvas>
 
 </Window>
