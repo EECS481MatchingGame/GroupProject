@@ -148,6 +148,7 @@ namespace KinectColorApp
                 };
                 myButton.Background = Brushes.White;
                 myButton.BorderBrush = Brushes.Black;
+                myButton.BorderThickness = 5;
                 myButton.IsHitTestVisible = false;
 
                 DropShadowBitmapEffect myDropShadowEffect = new DropShadowBitmapEffect();
